@@ -1,0 +1,1488 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Brains University - Transform Your Learning Journey</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #f1f3f5;
+            --text-primary: #1a1a1a;
+            --text-secondary: #6b7280;
+            --accent-primary: #0D2D66;
+            --accent-secondary: #E6B800;
+            --accent-tertiary: #C42F33;
+            --accent-quaternary: #4CAF50;
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.3);
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a1a;
+            --bg-tertiary: #2a2a2a;
+            --text-primary: #f5f5f5;
+            --text-secondary: #a1a1a1;
+            --glass-bg: rgba(26, 26, 26, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --shadow-color: rgba(255, 255, 255, 0.05);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1), color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .heading-display {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .glass-effect {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-tertiary), var(--accent-tertiary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .floating-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(50px, -50px) scale(1.1); }
+            50% { transform: translate(-30px, 30px) scale(0.9); }
+            75% { transform: translate(40px, 20px) scale(1.05); }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-60px);
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal-left.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(60px);
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal-right.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .hover-lift {
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 25px 50px var(--shadow-color);
+        }
+
+        .image-overlay {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .image-overlay::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.3), rgba(236, 72, 153, 0.3));
+            opacity: 0;
+            transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1;
+        }
+
+        .image-overlay:hover::before {
+            opacity: 1;
+        }
+
+        .image-overlay img {
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .image-overlay:hover img {
+            transform: scale(1.1);
+        }
+
+        .curve-divider {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+        }
+
+        .curve-divider svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 80px;
+        }
+
+        .parallax-slow {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .stat-number {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        .nav-link {
+            position: relative;
+            padding-bottom: 4px;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .morph-card {
+            border-radius: 24px;
+            transition: border-radius 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .morph-card:hover {
+            border-radius: 48px 24px 48px 24px;
+        }
+
+        @keyframes spin-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .spin-slow {
+            animation: spin-slow 30s linear infinite;
+        }
+
+        .grid-pattern {
+            background-image: 
+                linear-gradient(var(--glass-border) 1px, transparent 1px),
+                linear-gradient(90deg, var(--glass-border) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.3;
+        }
+
+        .theme-transition {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
+</head>
+<body class="theme-transition">
+    
+    <!-- Floating Background Orbs -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden -z-10">
+        <div class="floating-orb" style="top: 10%; left: 10%; width: 400px; height: 400px; background: linear-gradient(135deg, #6366f1, #8b5cf6);"></div>
+        <div class="floating-orb" style="top: 60%; right: 10%; width: 500px; height: 500px; background: linear-gradient(135deg, #ec4899, #f43f5e); animation-delay: -5s;"></div>
+        <div class="floating-orb" style="bottom: 10%; left: 40%; width: 350px; height: 350px; background: linear-gradient(135deg, #8b5cf6, #06b6d4); animation-delay: -10s;"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-effect theme-transition">
+        <nav class="max-w-7xl mx-auto px-6 lg:px-8 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2"> 
+                       <img src="media/images/brainslogo.png" alt="The Brains Logo" class="h-12 w-auto">
+                </div>
+
+                <div class="hidden lg:flex items-center gap-8">
+                    <a href="#" class="nav-link theme-transition" style="color: var(--text-primary);" data-translate="nav.home">Home</a>
+                    <a href="#" class="nav-link theme-transition" style="color: var(--text-primary);" data-translate="nav.about">About</a>
+                    <a href="#" class="nav-link theme-transition" style="color: var(--text-primary);" data-translate="nav.programs">Programs</a>
+                    <a href="#" class="nav-link theme-transition" style="color: var(--text-primary);" data-translate="nav.faculties">Faculties</a>
+                    <a href="#" class="nav-link theme-transition" style="color: var(--text-primary);" data-translate="nav.contact">Contact</a>
+                </div>
+
+                <div class="flex items-center gap-4">
+                    <!-- Language Switcher -->
+                    <button id="langSwitch" class="px-3 py-1.5 rounded-lg glass-effect theme-transition hover:opacity-80 transition-opacity" style="color: var(--text-primary);">
+                        <span id="currentLang">EN</span>
+                    </button>
+
+                    <!-- Theme Toggle -->
+                    <button id="themeToggle" class="p-2 rounded-lg glass-effect theme-transition hover:opacity-80 transition-opacity">
+                        <svg id="sunIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--text-primary);">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                        <svg id="moonIcon" class="hidden" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--text-primary);">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                    </button>
+
+                    <button class="px-5 py-2.5 rounded-full font-medium theme-transition" style="background: linear-gradient(135deg, var(--accent-tertiary), var(--accent-tertiary)); color: white;" data-translate="nav.cta">
+                        Get Started
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center pt-24 overflow-hidden">
+        <div class="absolute inset-0 grid-pattern"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 py-20 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="reveal-left">
+                    <div class="inline-block px-4 py-2 rounded-full glass-effect mb-6">
+                        <span class="text-sm font-medium gradient-text" data-translate="hero.badge">✨ The Future of Learning</span>
+                    </div>
+                    <h1 class="heading-display mb-6 theme-transition" style="font-size: clamp(2.5rem, 5vw, 5rem); line-height: 1.1; color: var(--accent-primary);">
+                        <span data-translate="hero.title1">The Brains</span><br>
+                        <span class="gradient-text" data-translate="hero.title2">University,</span><br>
+                        <span data-translate="hero.title3">Institute</span>
+                    </h1>
+                    <p class="text-xl mb-8 theme-transition" style="color: var(--text-primary); max-width: 540px;" data-translate="hero.subtitle">
+                        A centre for teaching, learning, innovation, professionalism entrepreneurship and excellence.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <button class="px-8 py-4 rounded-full font-semibold text-white text-lg hover:opacity-90 transition-all transform hover:scale-105" style="background: linear-gradient(135deg, var(--accent-primary), var(--accent-tertiary));" data-translate="hero.cta1">
+                            Explore Courses
+                        </button>
+                        <button class="px-8 py-4 rounded-full font-semibold glass-effect hover-lift theme-transition" style="color: var(--text-primary);" data-translate="hero.cta2">
+                            Contact Us
+                        </button>
+                    </div>
+                </div>
+
+                <div class="reveal-right relative">
+                    <div class="relative">
+                        <!-- Decorative Circle -->
+                        <div class="absolute -top-10 -right-10 w-64 h-64 rounded-full spin-slow" style="background: linear-gradient(135deg, var(--accent-primary), var(--accent-tertiary)); opacity: 0.1;"></div>
+                        
+                        <!-- Hero Cards Cluster -->
+                        <div class="relative space-y-6">
+                            <div class="glass-effect rounded-3xl p-8 hover-lift transform rotate-2">
+                                <div class="flex items-center gap-4 mb-4">
+                                    <div class="w-12 h-12 rounded-full" style="background: linear-gradient(135deg, #6366f1, #8b5cf6);"></div>
+                                    <div>
+                                        <div class="h-3 w-32 rounded theme-transition" style="background: var(--bg-tertiary);"></div>
+                                        <div class="h-2 w-20 rounded mt-2 theme-transition" style="background: var(--bg-tertiary);"></div>
+                                    </div>
+                                </div>
+                                <div class="h-2 w-full rounded theme-transition mb-2" style="background: var(--bg-tertiary);"></div>
+                                <div class="h-2 w-3/4 rounded theme-transition" style="background: var(--bg-tertiary);"></div>
+                            </div>
+
+                            <div class="glass-effect rounded-3xl p-8 hover-lift transform -rotate-2 ml-8">
+                                <div class="flex justify-between items-center mb-6">
+                                    <div class="h-4 w-24 rounded theme-transition" style="background: var(--bg-tertiary);"></div>
+                                    <div class="px-3 py-1 rounded-full text-xs font-medium" style="background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary)); color: white;">
+                                        <span data-translate="hero.card.live">LIVE</span>
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-3 gap-3">
+                                    <div class="aspect-square rounded-xl theme-transition" style="background: linear-gradient(135deg, #ec4899, #f43f5e);"></div>
+                                    <div class="aspect-square rounded-xl theme-transition" style="background: linear-gradient(135deg, #8b5cf6, #6366f1);"></div>
+                                    <div class="aspect-square rounded-xl theme-transition" style="background: linear-gradient(135deg, #06b6d4, #3b82f6);"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Curved Divider -->
+        <div class="curve-divider">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" style="fill: var(--bg-secondary);" class="theme-transition"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="py-32 relative theme-transition" style="background: var(--bg-secondary);">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-20 reveal">
+                <h2 class="heading-display mb-4 theme-transition" style="font-size: clamp(2rem, 4vw, 3.5rem); color: var(--text-primary);" data-translate="categories.title">
+                    Explore Your Passion
+                </h2>
+                <p class="text-xl theme-transition" style="color: var(--text-secondary);" data-translate="categories.subtitle">
+                    Curated learning paths across diverse disciplines
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Category Card 1 -->
+                <div class="reveal morph-card glass-effect p-8 hover-lift cursor-pointer group" style="transition-delay: 0.1s;">
+                    <div class="mb-6 flex gap-2">
+                        <div class="w-12 h-12 rounded-2xl flex items-center justify-center" style="background: linear-gradient(135deg, #6366f1, #8b5cf6);">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                            </svg>
+                        </div>
+                        <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background: linear-gradient(135deg, #8b5cf6, #ec4899); opacity: 0.6;">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="2" y1="12" x2="22" y2="12"></line>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 theme-transition" style="color: var(--text-primary);" data-translate="categories.design.title">Design & Creative</h3>
+                    <p class="mb-4 theme-transition" style="color: var(--text-secondary);" data-translate="categories.design.desc">Master visual storytelling and digital creation</p>
+                    <div class="flex items-center gap-2 text-sm font-medium gradient-text">
+                        <span data-translate="categories.design.courses">128 courses</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transform group-hover:translate-x-1 transition-transform">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Category Card 2 -->
+                <div class="reveal morph-card glass-effect p-8 hover-lift cursor-pointer group" style="transition-delay: 0.2s;">
+                    <div class="mb-6 flex gap-2">
+                        <div class="w-12 h-12 rounded-2xl flex items-center justify-center" style="background: linear-gradient(135deg, #ec4899, #f43f5e);">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="16 18 22 12 16 6"></polyline>
+                                <polyline points="8 6 2 12 8 18"></polyline>
+                            </svg>
+                        </div>
+                        <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background: linear-gradient(135deg, #f43f5e, #fb923c); opacity: 0.6;">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                                <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 theme-transition" style="color: var(--text-primary);" data-translate="categories.tech.title">Technology & Dev</h3>
+                    <p class="mb-4 theme-transition" style="color: var(--text-secondary);" data-translate="categories.tech.desc">Build the future with cutting-edge skills</p>
+                    <div class="flex items-center gap-2 text-sm font-medium gradient-text">
+                        <span data-translate="categories.tech.courses">256 courses</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transform group-hover:translate-x-1 transition-transform">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Category Card 3 -->
+                <div class="reveal morph-card glass-effect p-8 hover-lift cursor-pointer group" style="transition-delay: 0.3s;">
+                    <div class="mb-6 flex gap-2">
+                        <div class="w-12 h-12 rounded-2xl flex items-center justify-center" style="background: linear-gradient(135deg, #06b6d4, #3b82f6);">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                                <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                                <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                            </svg>
+                        </div>
+                        <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background: linear-gradient(135deg, #3b82f6, #8b5cf6); opacity: 0.6;">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                                <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 theme-transition" style="color: var(--text-primary);" data-translate="categories.business.title">Business & Strategy</h3>
+                    <p class="mb-4 theme-transition" style="color: var(--text-secondary);" data-translate="categories.business.desc">Lead with confidence and innovation</p>
+                    <div class="flex items-center gap-2 text-sm font-medium gradient-text">
+                        <span data-translate="categories.business.courses">184 courses</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transform group-hover:translate-x-1 transition-transform">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Category Card 4 -->
+                <div class="reveal morph-card glass-effect p-8 hover-lift cursor-pointer group" style="transition-delay: 0.4s;">
+                    <div class="mb-6 flex gap-2">
+                        <div class="w-12 h-12 rounded-2xl flex items-center justify-center" style="background: linear-gradient(135deg, #f59e0b, #ef4444);">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                        </div>
+                        <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background: linear-gradient(135deg, #ef4444, #ec4899); opacity: 0.6;">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 theme-transition" style="color: var(--text-primary);" data-translate="categories.personal.title">Personal Growth</h3>
+                    <p class="mb-4 theme-transition" style="color: var(--text-secondary);" data-translate="categories.personal.desc">Unlock your full potential and thrive</p>
+                    <div class="flex items-center gap-2 text-sm font-medium gradient-text">
+                        <span data-translate="categories.personal.courses">92 courses</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transform group-hover:translate-x-1 transition-transform">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Courses Section -->
+    <section class="py-32 relative theme-transition" style="background: var(--bg-primary);">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex justify-between items-end mb-16 reveal">
+                <div>
+                    <h2 class="heading-display mb-4 theme-transition" style="font-size: clamp(2rem, 4vw, 3.5rem); color: var(--text-primary);" data-translate="courses.title">
+                        Featured Journeys
+                    </h2>
+                    <p class="text-xl theme-transition" style="color: var(--text-secondary);" data-translate="courses.subtitle">
+                        Handpicked courses to accelerate your growth
+                    </p>
+                </div>
+                <button class="hidden md:block px-6 py-3 rounded-full glass-effect hover-lift font-medium theme-transition" style="color: var(--text-primary);" data-translate="courses.viewall">
+                    View All Courses
+                </button>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Course Card 1 -->
+                <div class="reveal hover-lift rounded-3xl overflow-hidden glass-effect" style="transition-delay: 0.1s;">
+                    <div class="image-overlay aspect-video">
+                        <img src="https://picsum.photos/seed/design1/600/400" alt="Course" class="w-full h-full object-cover">
+                        <div class="absolute top-4 left-4 px-3 py-1.5 rounded-full text-xs font-semibold z-10" style="background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary)); color: white;">
+                            <span data-translate="courses.bestseller">BESTSELLER</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="px-3 py-1 rounded-full text-xs font-medium theme-transition" style="background: var(--bg-tertiary); color: var(--text-secondary);" data-translate="courses.category1">Design</span>
+                            <span class="text-xs theme-transition" style="color: var(--text-secondary);">•</span>
+                            <span class="text-xs theme-transition" style="color: var(--text-secondary);" data-translate="courses.duration1">12 weeks</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 theme-transition" style="color: var(--text-primary);" data-translate="courses.title1">
+                            Advanced UI/UX Design Mastery
+                        </h3>
+                        <p class="mb-4 text-sm theme-transition" style="color: var(--text-secondary);" data-translate="courses.desc1">
+                            Create stunning, user-centered experiences that drive engagement and conversion
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <div class="w-8 h-8 rounded-full" style="background: linear-gradient(135deg, #6366f1, #8b5cf6);"></div>
+                                <span class="text-sm font-medium theme-transition" style="color: var(--text-primary);">Sarah Chen</span>
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="color: #f59e0b;">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                                <span class="text-sm font-bold theme-transition" style="color: var(--text-primary);">4.9</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course Card 2 -->
+                <div class="reveal hover-lift rounded-3xl overflow-hidden glass-effect" style="transition-delay: 0.2s;">
+                    <div class="image-overlay aspect-video">
+                        <img src="https://picsum.photos/seed/tech1/600/400" alt="Course" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="px-3 py-1 rounded-full text-xs font-medium theme-transition" style="background: var(--bg-tertiary); color: var(--text-secondary);" data-translate="courses.category2">Development</span>
+                            <span class="text-xs theme-transition" style="color: var(--text-secondary);">•</span>
+                            <span class="text-xs theme-transition" style="color: var(--text-secondary);" data-translate="courses.duration2">16 weeks</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 theme-transition" style="color: var(--text-primary);" data-translate="courses.title2">
+                            Full-Stack Web Development Pro
+                        </h3>
+                        <p class="mb-4 text-sm theme-transition" style="color: var(--text-secondary);" data-translate="courses.desc2">
+                            Build production-ready applications with modern frameworks and best practices
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <div class="w-8 h-8 rounded-full" style="background: linear-gradient(135deg, #ec4899, #f43f5e);"></div>
+                                <span class="text-sm font-medium theme-transition" style="color: var(--text-primary);">Marcus Reid</span>
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="color: #f59e0b;">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                                <span class="text-sm font-bold theme-transition" style="color: var(--text-primary);">5.0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course Card 3 -->
+                <div class="reveal hover-lift rounded-3xl overflow-hidden glass-effect" style="transition-delay: 0.3s;">
+                    <div class="image-overlay aspect-video">
+                        <img src="https://picsum.photos/seed/business1/600/400" alt="Course" class="w-full h-full object-cover">
+                        <div class="absolute top-4 left-4 px-3 py-1.5 rounded-full text-xs font-semibold z-10" style="background: linear-gradient(135deg, #ec4899, #f43f5e); color: white;">
+                            <span data-translate="courses.new">NEW</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="px-3 py-1 rounded-full text-xs font-medium theme-transition" style="background: var(--bg-tertiary); color: var(--text-secondary);" data-translate="courses.category3">Business</span>
+                            <span class="text-xs theme-transition" style="color: var(--text-secondary);">•</span>
+                            <span class="text-xs theme-transition" style="color: var(--text-secondary);" data-translate="courses.duration3">8 weeks</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 theme-transition" style="color: var(--text-primary);" data-translate="courses.title3">
+                            Strategic Leadership & Innovation
+                        </h3>
+                        <p class="mb-4 text-sm theme-transition" style="color: var(--text-secondary);" data-translate="courses.desc3">
+                            Transform your organization with visionary thinking and agile methodologies
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <div class="w-8 h-8 rounded-full" style="background: linear-gradient(135deg, #06b6d4, #3b82f6);"></div>
+                                <span class="text-sm font-medium theme-transition" style="color: var(--text-primary);">Aisha Patel</span>
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="color: #f59e0b;">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                                <span class="text-sm font-bold theme-transition" style="color: var(--text-primary);">4.8</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Learning Value Section -->
+    <section class="py-32 relative overflow-hidden theme-transition" style="background: var(--bg-secondary);">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="reveal-left">
+                    <h2 class="heading-display mb-6 theme-transition" style="font-size: clamp(2rem, 4vw, 3.5rem); color: var(--text-primary);" data-translate="value.title">
+                        Why Choose EduVerse?
+                    </h2>
+                    <p class="text-xl mb-12 theme-transition" style="color: var(--text-secondary);" data-translate="value.subtitle">
+                        We're reimagining education for the modern learner
+                    </p>
+
+                    <div class="space-y-8">
+                        <div class="flex gap-6">
+                            <div class="flex-shrink-0 w-16 h-16 rounded-2xl flex items-center justify-center" style="background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                                    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold mb-2 theme-transition" style="color: var(--text-primary);" data-translate="value.point1.title">Expert-Led Content</h3>
+                                <p class="theme-transition" style="color: var(--text-secondary);" data-translate="value.point1.desc">Learn from industry leaders with real-world experience and proven track records</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-6">
+                            <div class="flex-shrink-0 w-16 h-16 rounded-2xl flex items-center justify-center" style="background: linear-gradient(135deg, #ec4899, #f43f5e);">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold mb-2 theme-transition" style="color: var(--text-primary);" data-translate="value.point2.title">Learn at Your Pace</h3>
+                                <p class="theme-transition" style="color: var(--text-secondary);" data-translate="value.point2.desc">Flexible schedules and lifetime access to course materials on any device</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-6">
+                            <div class="flex-shrink-0 w-16 h-16 rounded-2xl flex items-center justify-center" style="background: linear-gradient(135deg, #06b6d4, #3b82f6);">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="9" cy="7" r="4"></circle>
+                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold mb-2 theme-transition" style="color: var(--text-primary);" data-translate="value.point3.title">Global Community</h3>
+                                <p class="theme-transition" style="color: var(--text-secondary);" data-translate="value.point3.desc">Connect with learners worldwide and build lasting professional relationships</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reveal-right relative">
+                    <div class="relative">
+                        <div class="absolute -top-8 -left-8 w-48 h-48 rounded-full" style="background: linear-gradient(135deg, var(--accent-primary), var(--accent-tertiary)); opacity: 0.2; filter: blur(60px);"></div>
+                        <div class="glass-effect rounded-3xl p-8 relative z-10">
+                            <img src="https://picsum.photos/seed/learning1/800/600" alt="Learning" class="rounded-2xl w-full">
+                        </div>
+                        <div class="absolute -bottom-8 -right-8 glass-effect rounded-2xl p-6 max-w-xs">
+                            <div class="flex items-center gap-4">
+                                <div class="w-16 h-16 rounded-full" style="background: linear-gradient(135deg, #f59e0b, #ef4444);"></div>
+                                <div>
+                                    <div class="text-3xl font-bold gradient-text">98%</div>
+                                    <div class="text-sm theme-transition" style="color: var(--text-secondary);" data-translate="value.satisfaction">Satisfaction Rate</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Immersive CTA Banner -->
+    <section class="py-32 relative overflow-hidden">
+        <div class="absolute inset-0">
+            <img src="https://picsum.photos/seed/ctabg/1920/1080" alt="Background" class="w-full h-full object-cover">
+            <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.9), rgba(139, 92, 246, 0.9));"></div>
+        </div>
+
+        <div class="max-w-5xl mx-auto px-6 lg:px-8 relative z-10 text-center reveal">
+            <h2 class="heading-display text-white mb-6" style="font-size: clamp(2.5rem, 5vw, 4.5rem);" data-translate="cta.title">
+                Ready to Transform Your Future?
+            </h2>
+            <p class="text-xl text-white/90 mb-12 max-w-2xl mx-auto" data-translate="cta.subtitle">
+                Join 50,000+ learners who are already advancing their careers with EduVerse
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <button class="px-10 py-5 rounded-full font-bold text-lg bg-white hover:scale-105 transition-transform" style="color: var(--accent-primary);" data-translate="cta.button1">
+                    Start Learning Today
+                </button>
+                <button class="px-10 py-5 rounded-full font-bold text-lg text-white border-2 border-white/30 glass-effect hover:scale-105 transition-transform" data-translate="cta.button2">
+                    Explore Free Courses
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="py-32 theme-transition" style="background: var(--bg-primary);">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
+                <div class="text-center reveal" style="transition-delay: 0.1s;">
+                    <div class="stat-number gradient-text mb-2">50K+</div>
+                    <div class="text-lg font-medium theme-transition" style="color: var(--text-secondary);" data-translate="stats.students">Active Students</div>
+                </div>
+                <div class="text-center reveal" style="transition-delay: 0.2s;">
+                    <div class="stat-number gradient-text mb-2">500+</div>
+                    <div class="text-lg font-medium theme-transition" style="color: var(--text-secondary);" data-translate="stats.courses">Premium Courses</div>
+                </div>
+                <div class="text-center reveal" style="transition-delay: 0.3s;">
+                    <div class="stat-number gradient-text mb-2">200+</div>
+                    <div class="text-lg font-medium theme-transition" style="color: var(--text-secondary);" data-translate="stats.instructors">Expert Instructors</div>
+                </div>
+                <div class="text-center reveal" style="transition-delay: 0.4s;">
+                    <div class="stat-number gradient-text mb-2">95%</div>
+                    <div class="text-lg font-medium theme-transition" style="color: var(--text-secondary);" data-translate="stats.completion">Completion Rate</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-32 relative theme-transition" style="background: var(--bg-secondary);">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-20 reveal">
+                <h2 class="heading-display mb-4 theme-transition" style="font-size: clamp(2rem, 4vw, 3.5rem); color: var(--text-primary);" data-translate="testimonials.title">
+                    Success Stories
+                </h2>
+                <p class="text-xl theme-transition" style="color: var(--text-secondary);" data-translate="testimonials.subtitle">
+                    Real transformations from our learning community
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="reveal glass-effect rounded-3xl p-8 hover-lift" style="transition-delay: 0.1s;">
+                    <div class="flex gap-1 mb-6">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="color: #f59e0b;">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="color: #f59e0b;">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="color: #f59e0b;">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="color: #f59e0b;">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="color: #f59e0b;">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                    </div>
+                    <p class="mb-6 text-lg theme-transition" style="color: var(--text-primary);" data-translate="testimonials.quote1">
+                        "EduVerse completely transformed my career. The UI/UX course gave me the skills to land my dream job at a top tech company."
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-full" style="background: linear-gradient(135deg, #6366f1, #8b5cf6);"></div>
+                        <div>
+                            <div class="font-semibold theme-transition" style="color: var(--text-primary);">Emma Rodriguez</div>
+                            <div class="text-sm theme-transition" style="color: var(--text-secondary);" data-translate="testimonials.role1">Product Designer</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="reveal glass-effect rounded-3xl p-8 hover-lift" style="transition-delay: 0.2s;">
+                    <div class="flex gap-1 mb-6">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="color: #f59e0b;">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="color: #f59e0b;">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="color: #f59e0b;">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="color: #f59e0b;">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="color: #f59e0b;">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                    </div>
+                    <p class="mb-6 text-lg theme-transition" style="color: var(--text-primary);" data-translate="testimonials.quote2">
+                        "The quality of instruction is unmatched. I went from beginner to building full-stack applications in just 4 months."
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-full" style="background: linear-gradient(135deg, #ec4899, #f43f5e);"></div>
+                        <div>
+                            <div class="font-semibold theme-transition" style="color: var(--text-primary);">James Kim</div>
+                            <div class="text-sm theme-transition" style="color: var(--text-secondary);" data-translate="testimonials.role2">Full-Stack Developer</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="reveal glass-effect rounded-3xl p-8 hover-lift" style="transition-delay: 0.3s;">
+                    <div class="flex gap-1 mb-6">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="color: #f59e0b;">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="color: #f59e0b;">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="color: #f59e0b;">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="color: #f59e0b;">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="color: #f59e0b;">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                    </div>
+                    <p class="mb-6 text-lg theme-transition" style="color: var(--text-primary);" data-translate="testimonials.quote3">
+                        "The business strategy course helped me scale my startup from 5 to 50 employees. The ROI has been incredible."
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-full" style="background: linear-gradient(135deg, #06b6d4, #3b82f6);"></div>
+                        <div>
+                            <div class="font-semibold theme-transition" style="color: var(--text-primary);">Sofia Martinez</div>
+                            <div class="text-sm theme-transition" style="color: var(--text-secondary);" data-translate="testimonials.role3">CEO & Founder</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instructors Section -->
+    <section class="py-32 theme-transition" style="background: var(--bg-primary);">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-20 reveal">
+                <h2 class="heading-display mb-4 theme-transition" style="font-size: clamp(2rem, 4vw, 3.5rem); color: var(--text-primary);" data-translate="instructors.title">
+                    Learn From The Best
+                </h2>
+                <p class="text-xl theme-transition" style="color: var(--text-secondary);" data-translate="instructors.subtitle">
+                    Industry leaders and innovators guiding your journey
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Instructor 1 -->
+                <div class="reveal text-center group" style="transition-delay: 0.1s;">
+                    <div class="relative mb-6 inline-block">
+                        <div class="w-48 h-48 rounded-3xl overflow-hidden hover-lift">
+                            <img src="https://picsum.photos/seed/instructor1/400/400" alt="Instructor" class="w-full h-full object-cover">
+                        </div>
+                        <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full text-xs font-semibold" style="background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary)); color: white;">
+                            <span data-translate="instructors.expert">Top Expert</span>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold mb-1 theme-transition" style="color: var(--text-primary);">Dr. Sarah Chen</h3>
+                    <p class="text-sm mb-2 theme-transition" style="color: var(--text-secondary);" data-translate="instructors.title1">Design Director</p>
+                    <p class="text-xs theme-transition" style="color: var(--text-secondary);" data-translate="instructors.students1">45K+ students</p>
+                </div>
+
+                <!-- Instructor 2 -->
+                <div class="reveal text-center group" style="transition-delay: 0.2s;">
+                    <div class="relative mb-6 inline-block">
+                        <div class="w-48 h-48 rounded-3xl overflow-hidden hover-lift">
+                            <img src="https://picsum.photos/seed/instructor2/400/400" alt="Instructor" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold mb-1 theme-transition" style="color: var(--text-primary);">Marcus Reid</h3>
+                    <p class="text-sm mb-2 theme-transition" style="color: var(--text-secondary);" data-translate="instructors.title2">Senior Developer</p>
+                    <p class="text-xs theme-transition" style="color: var(--text-secondary);" data-translate="instructors.students2">38K+ students</p>
+                </div>
+
+                <!-- Instructor 3 -->
+                <div class="reveal text-center group" style="transition-delay: 0.3s;">
+                    <div class="relative mb-6 inline-block">
+                        <div class="w-48 h-48 rounded-3xl overflow-hidden hover-lift">
+                            <img src="https://picsum.photos/seed/instructor3/400/400" alt="Instructor" class="w-full h-full object-cover">
+                        </div>
+                        <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full text-xs font-semibold" style="background: linear-gradient(135deg, #ec4899, #f43f5e); color: white;">
+                            <span data-translate="instructors.featured">Featured</span>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold mb-1 theme-transition" style="color: var(--text-primary);">Aisha Patel</h3>
+                    <p class="text-sm mb-2 theme-transition" style="color: var(--text-secondary);" data-translate="instructors.title3">Strategy Consultant</p>
+                    <p class="text-xs theme-transition" style="color: var(--text-secondary);" data-translate="instructors.students3">52K+ students</p>
+                </div>
+
+                <!-- Instructor 4 -->
+                <div class="reveal text-center group" style="transition-delay: 0.4s;">
+                    <div class="relative mb-6 inline-block">
+                        <div class="w-48 h-48 rounded-3xl overflow-hidden hover-lift">
+                            <img src="https://picsum.photos/seed/instructor4/400/400" alt="Instructor" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold mb-1 theme-transition" style="color: var(--text-primary);">Alex Johnson</h3>
+                    <p class="text-sm mb-2 theme-transition" style="color: var(--text-secondary);" data-translate="instructors.title4">Marketing Expert</p>
+                    <p class="text-xs theme-transition" style="color: var(--text-secondary);" data-translate="instructors.students4">29K+ students</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Insights/Blog Section -->
+    <section class="py-32 theme-transition" style="background: var(--bg-secondary);">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex justify-between items-end mb-16 reveal">
+                <div>
+                    <h2 class="heading-display mb-4 theme-transition" style="font-size: clamp(2rem, 4vw, 3.5rem); color: var(--text-primary);" data-translate="insights.title">
+                        Latest Insights
+                    </h2>
+                    <p class="text-xl theme-transition" style="color: var(--text-secondary);" data-translate="insights.subtitle">
+                        Trends, tips, and inspiration for lifelong learners
+                    </p>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-8">
+                <!-- Featured Article -->
+                <div class="reveal lg:row-span-2 glass-effect rounded-3xl overflow-hidden hover-lift">
+                    <div class="image-overlay aspect-[4/3]">
+                        <img src="https://picsum.photos/seed/blog1/800/600" alt="Article" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-8">
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="px-3 py-1 rounded-full text-xs font-medium theme-transition" style="background: var(--bg-tertiary); color: var(--text-secondary);" data-translate="insights.category1">Future of Learning</span>
+                            <span class="text-sm theme-transition" style="color: var(--text-secondary);">Jan 2, 2026</span>
+                        </div>
+                        <h3 class="text-3xl font-bold mb-4 heading-display theme-transition" style="color: var(--text-primary);" data-translate="insights.article1.title">
+                            The AI Revolution in Education: What Learners Need to Know
+                        </h3>
+                        <p class="mb-6 text-lg theme-transition" style="color: var(--text-secondary);" data-translate="insights.article1.desc">
+                            Discover how artificial intelligence is transforming the learning landscape and what skills will matter most in the coming decade.
+                        </p>
+                        <a href="#" class="inline-flex items-center gap-2 font-semibold gradient-text">
+                            <span data-translate="insights.readmore">Read Full Article</span>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Article 2 -->
+                <div class="reveal glass-effect rounded-3xl overflow-hidden hover-lift flex flex-col lg:flex-row" style="transition-delay: 0.1s;">
+                    <div class="image-overlay lg:w-1/2">
+                        <img src="https://picsum.photos/seed/blog2/600/400" alt="Article" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6 lg:w-1/2">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="px-3 py-1 rounded-full text-xs font-medium theme-transition" style="background: var(--bg-tertiary); color: var(--text-secondary);" data-translate="insights.category2">Career Tips</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 theme-transition" style="color: var(--text-primary);" data-translate="insights.article2.title">
+                            5 Skills Every Professional Needs in 2026
+                        </h3>
+                        <p class="text-sm theme-transition" style="color: var(--text-secondary);" data-translate="insights.article2.desc">
+                            Stay ahead of the curve with these essential competencies
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Article 3 -->
+                <div class="reveal glass-effect rounded-3xl overflow-hidden hover-lift flex flex-col lg:flex-row" style="transition-delay: 0.2s;">
+                    <div class="image-overlay lg:w-1/2">
+                        <img src="https://picsum.photos/seed/blog3/600/400" alt="Article" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6 lg:w-1/2">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="px-3 py-1 rounded-full text-xs font-medium theme-transition" style="background: var(--bg-tertiary); color: var(--text-secondary);" data-translate="insights.category3">Success Stories</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 theme-transition" style="color: var(--text-primary);" data-translate="insights.article3.title">
+                            How Remote Learning Changed My Life
+                        </h3>
+                        <p class="text-sm theme-transition" style="color: var(--text-secondary);" data-translate="insights.article3.desc">
+                            A personal journey from career transition to fulfillment
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="py-32 relative overflow-hidden theme-transition" style="background: var(--bg-primary);">
+        <div class="absolute inset-0 grid-pattern"></div>
+        
+        <div class="max-w-4xl mx-auto px-6 lg:px-8 text-center relative z-10 reveal">
+            <h2 class="heading-display mb-6 theme-transition" style="font-size: clamp(2rem, 4vw, 3.5rem); color: var(--text-primary);" data-translate="newsletter.title">
+                Stay In The Loop
+            </h2>
+            <p class="text-xl mb-12 theme-transition" style="color: var(--text-secondary);" data-translate="newsletter.subtitle">
+                Get weekly insights, new course announcements, and exclusive offers delivered to your inbox
+            </p>
+            
+            <form class="flex flex-col sm:flex-row gap-4 max-w-2xl mx-auto">
+                <input 
+                    type="email" 
+                    placeholder="Enter your email address" 
+                    class="flex-1 px-6 py-4 rounded-full glass-effect theme-transition outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-transparent"
+                    style="color: var(--text-primary); border: 1px solid var(--glass-border); focus-visible:ring-color: var(--accent-primary);"
+                    data-translate-placeholder="newsletter.placeholder"
+                >
+                <button 
+                    type="submit" 
+                    class="px-8 py-4 rounded-full font-semibold text-white hover:scale-105 transition-transform whitespace-nowrap" 
+                    style="background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));"
+                    data-translate="newsletter.button"
+                >
+                    Subscribe Now
+                </button>
+            </form>
+            
+            <p class="text-sm mt-6 theme-transition" style="color: var(--text-secondary);" data-translate="newsletter.privacy">
+                We respect your privacy. Unsubscribe at any time.
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-20 theme-transition" style="background: var(--bg-secondary); border-top: 1px solid var(--glass-border);">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
+                <div class="lg:col-span-2">
+                    <div class="flex items-center gap-2 mb-6">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="40" height="40" rx="12" fill="url(#footer-logo-gradient)"/>
+                            <path d="M20 10L28 15V25L20 30L12 25V15L20 10Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M20 20L28 15M20 20L12 15M20 20V30" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <defs>
+                                <linearGradient id="footer-logo-gradient" x1="0" y1="0" x2="40" y2="40">
+                                    <stop offset="0%" stop-color="#6366f1"/>
+                                    <stop offset="100%" stop-color="#8b5cf6"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                        <span class="text-xl font-bold heading-display theme-transition" style="color: var(--text-primary);">EduVerse</span>
+                    </div>
+                    <p class="mb-6 theme-transition" style="color: var(--text-secondary);" data-translate="footer.tagline">
+                        Empowering learners worldwide to achieve their dreams through transformative education.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 rounded-full glass-effect flex items-center justify-center hover:scale-110 transition-transform">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="color: var(--text-primary);">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full glass-effect flex items-center justify-center hover:scale-110 transition-transform">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="color: var(--text-primary);">
+                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full glass-effect flex items-center justify-center hover:scale-110 transition-transform">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="color: var(--text-primary);">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full glass-effect flex items-center justify-center hover:scale-110 transition-transform">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="color: var(--text-primary);">
+                                <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-4 theme-transition" style="color: var(--text-primary);" data-translate="footer.platform">Platform</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="theme-transition hover:opacity-70" style="color: var(--text-secondary);" data-translate="footer.link1">Browse Courses</a></li>
+                        <li><a href="#" class="theme-transition hover:opacity-70" style="color: var(--text-secondary);" data-translate="footer.link2">Categories</a></li>
+                        <li><a href="#" class="theme-transition hover:opacity-70" style="color: var(--text-secondary);" data-translate="footer.link3">Pricing</a></li>
+                        <li><a href="#" class="theme-transition hover:opacity-70" style="color: var(--text-secondary);" data-translate="footer.link4">For Business</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-4 theme-transition" style="color: var(--text-primary);" data-translate="footer.company">Company</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="theme-transition hover:opacity-70" style="color: var(--text-secondary);" data-translate="footer.link5">About Us</a></li>
+                        <li><a href="#" class="theme-transition hover:opacity-70" style="color: var(--text-secondary);" data-translate="footer.link6">Careers</a></li>
+                        <li><a href="#" class="theme-transition hover:opacity-70" style="color: var(--text-secondary);" data-translate="footer.link7">Press</a></li>
+                        <li><a href="#" class="theme-transition hover:opacity-70" style="color: var(--text-secondary);" data-translate="footer.link8">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-4 theme-transition" style="color: var(--text-primary);" data-translate="footer.support">Support</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="theme-transition hover:opacity-70" style="color: var(--text-secondary);" data-translate="footer.link9">Help Center</a></li>
+                        <li><a href="#" class="theme-transition hover:opacity-70" style="color: var(--text-secondary);" data-translate="footer.link10">Terms of Service</a></li>
+                        <li><a href="#" class="theme-transition hover:opacity-70" style="color: var(--text-secondary);" data-translate="footer.link11">Privacy Policy</a></li>
+                        <li><a href="#" class="theme-transition hover:opacity-70" style="color: var(--text-secondary);" data-translate="footer.link12">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t pt-8 flex flex-col md:flex-row justify-between items-center theme-transition" style="border-color: var(--glass-border);">
+                <p class="theme-transition" style="color: var(--text-secondary);" data-translate="footer.copyright">
+                    © 2026 EduVerse. All rights reserved.
+                </p>
+                <p class="theme-transition mt-4 md:mt-0" style="color: var(--text-secondary);" data-translate="footer.made">
+                    Made with ❤️ for learners worldwide
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Translations
+        const translations = {
+            en: {
+                "nav.home": "Home",
+                "nav.about": "About",
+                "nav.programs": "Programs",
+                "nav.faculties": "Faculties",
+                "nav.contact": "Contact",
+                "nav.cta": "Get Started",
+                "hero.badge": "✨ The Future of Learning",
+                "hero.title1": "The Brains",
+                "hero.title2": "University,",
+                "hero.title3": "Institute",
+                "hero.subtitle": "A centre for teaching, learning, innovation, professionalism entrepreneurship and excellence.",
+                "hero.cta1": "Explore Courses",
+                "hero.cta2": "Contact Us",
+                "hero.card.live": "LIVE",
+                "categories.title": "Explore Your Passion",
+                "categories.subtitle": "Curated learning paths across diverse disciplines",
+                "categories.design.title": "Design & Creative",
+                "categories.design.desc": "Master visual storytelling and digital creation",
+                "categories.design.courses": "128 courses",
+                "categories.tech.title": "Technology & Dev",
+                "categories.tech.desc": "Build the future with cutting-edge skills",
+                "categories.tech.courses": "256 courses",
+                "categories.business.title": "Business & Strategy",
+                "categories.business.desc": "Lead with confidence and innovation",
+                "categories.business.courses": "184 courses",
+                "categories.personal.title": "Personal Growth",
+                "categories.personal.desc": "Unlock your full potential and thrive",
+                "categories.personal.courses": "92 courses",
+                "courses.title": "Featured Journeys",
+                "courses.subtitle": "Handpicked courses to accelerate your growth",
+                "courses.viewall": "View All Courses",
+                "courses.bestseller": "BESTSELLER",
+                "courses.new": "NEW",
+                "courses.category1": "Design",
+                "courses.category2": "Development",
+                "courses.category3": "Business",
+                "courses.duration1": "12 weeks",
+                "courses.duration2": "16 weeks",
+                "courses.duration3": "8 weeks",
+                "courses.title1": "Advanced UI/UX Design Mastery",
+                "courses.title2": "Full-Stack Web Development Pro",
+                "courses.title3": "Strategic Leadership & Innovation",
+                "courses.desc1": "Create stunning, user-centered experiences that drive engagement and conversion",
+                "courses.desc2": "Build production-ready applications with modern frameworks and best practices",
+                "courses.desc3": "Transform your organization with visionary thinking and agile methodologies",
+                "value.title": "Why Choose EduVerse?",
+                "value.subtitle": "We're reimagining education for the modern learner",
+                "value.point1.title": "Expert-Led Content",
+                "value.point1.desc": "Learn from industry leaders with real-world experience and proven track records",
+                "value.point2.title": "Learn at Your Pace",
+                "value.point2.desc": "Flexible schedules and lifetime access to course materials on any device",
+                "value.point3.title": "Global Community",
+                "value.point3.desc": "Connect with learners worldwide and build lasting professional relationships",
+                "value.satisfaction": "Satisfaction Rate",
+                "cta.title": "Ready to Transform Your Future?",
+                "cta.subtitle": "Join 50,000+ learners who are already advancing their careers with EduVerse",
+                "cta.button1": "Start Learning Today",
+                "cta.button2": "Explore Free Courses",
+                "stats.students": "Active Students",
+                "stats.courses": "Premium Courses",
+                "stats.instructors": "Expert Instructors",
+                "stats.completion": "Completion Rate",
+                "testimonials.title": "Success Stories",
+                "testimonials.subtitle": "Real transformations from our learning community",
+                "testimonials.quote1": "\"EduVerse completely transformed my career. The UI/UX course gave me the skills to land my dream job at a top tech company.\"",
+                "testimonials.quote2": "\"The quality of instruction is unmatched. I went from beginner to building full-stack applications in just 4 months.\"",
+                "testimonials.quote3": "\"The business strategy course helped me scale my startup from 5 to 50 employees. The ROI has been incredible.\"",
+                "testimonials.role1": "Product Designer",
+                "testimonials.role2": "Full-Stack Developer",
+                "testimonials.role3": "CEO & Founder",
+                "instructors.title": "Learn From The Best",
+                "instructors.subtitle": "Industry leaders and innovators guiding your journey",
+                "instructors.expert": "Top Expert",
+                "instructors.featured": "Featured",
+                "instructors.title1": "Design Director",
+                "instructors.title2": "Senior Developer",
+                "instructors.title3": "Strategy Consultant",
+                "instructors.title4": "Marketing Expert",
+                "instructors.students1": "45K+ students",
+                "instructors.students2": "38K+ students",
+                "instructors.students3": "52K+ students",
+                "instructors.students4": "29K+ students",
+                "insights.title": "Latest Insights",
+                "insights.subtitle": "Trends, tips, and inspiration for lifelong learners",
+                "insights.category1": "Future of Learning",
+                "insights.category2": "Career Tips",
+                "insights.category3": "Success Stories",
+                "insights.article1.title": "The AI Revolution in Education: What Learners Need to Know",
+                "insights.article1.desc": "Discover how artificial intelligence is transforming the learning landscape and what skills will matter most in the coming decade.",
+                "insights.article2.title": "5 Skills Every Professional Needs in 2026",
+                "insights.article2.desc": "Stay ahead of the curve with these essential competencies",
+                "insights.article3.title": "How Remote Learning Changed My Life",
+                "insights.article3.desc": "A personal journey from career transition to fulfillment",
+                "insights.readmore": "Read Full Article",
+                "newsletter.title": "Stay In The Loop",
+                "newsletter.subtitle": "Get weekly insights, new course announcements, and exclusive offers delivered to your inbox",
+                "newsletter.placeholder": "Enter your email address",
+                "newsletter.button": "Subscribe Now",
+                "newsletter.privacy": "We respect your privacy. Unsubscribe at any time.",
+                "footer.tagline": "Empowering learners worldwide to achieve their dreams through transformative education.",
+                "footer.platform": "Platform",
+                "footer.company": "Company",
+                "footer.support": "Support",
+                "footer.link1": "Browse Courses",
+                "footer.link2": "Categories",
+                "footer.link3": "Pricing",
+                "footer.link4": "For Business",
+                "footer.link5": "About Us",
+                "footer.link6": "Careers",
+                "footer.link7": "Press",
+                "footer.link8": "Contact",
+                "footer.link9": "Help Center",
+                "footer.link10": "Terms of Service",
+                "footer.link11": "Privacy Policy",
+                "footer.link12": "Cookie Policy",
+                "footer.copyright": "© 2026 The Brains University. All rights reserved.",
+                "footer.made": "Made with ❤️ by Bianse Design"
+            },
+            fr: {
+                "nav.home": "Accueil",
+                "nav.about": "À propos",
+                "nav.programs": "Programmes",
+                "nav.faculties": "Facultés",
+                "nav.contact": "Contact",
+                "hero.badge": "✨ L'Avenir de l'Apprentissage",
+                "hero.title1": "The Brains",
+                "hero.title2": "University,",
+                "hero.title3": "Institute",
+                "hero.subtitle": "Un centre dédié à l'enseignement, à l'apprentissage, à l'innovation, au professionnalisme, à l'entrepreneuriat et à l'excellence.",
+                "hero.cta1": "Explorer les Cours",
+                "hero.cta2": "Nous Contacter",
+                "hero.card.live": "EN DIRECT",
+                "categories.title": "Explorez Votre Passion",
+                "categories.subtitle": "Parcours d'apprentissage sélectionnés dans diverses disciplines",
+                "categories.design.title": "Design & Créatif",
+                "categories.design.desc": "Maîtrisez la narration visuelle et la création numérique",
+                "categories.design.courses": "128 cours",
+                "categories.tech.title": "Technologie & Dév",
+                "categories.tech.desc": "Construisez l'avenir avec des compétences de pointe",
+                "categories.tech.courses": "256 cours",
+                "categories.business.title": "Business & Stratégie",
+                "categories.business.desc": "Dirigez avec confiance et innovation",
+                "categories.business.courses": "184 cours",
+                "categories.personal.title": "Croissance Personnelle",
+                "categories.personal.desc": "Libérez votre plein potentiel et prospérez",
+                "categories.personal.courses": "92 cours",
+                "courses.title": "Parcours Vedettes",
+                "courses.subtitle": "Cours sélectionnés pour accélérer votre croissance",
+                "courses.viewall": "Voir Tous les Cours",
+                "courses.bestseller": "MEILLEURE VENTE",
+                "courses.new": "NOUVEAU",
+                "courses.category1": "Design",
+                "courses.category2": "Développement",
+                "courses.category3": "Business",
+                "courses.duration1": "12 semaines",
+                "courses.duration2": "16 semaines",
+                "courses.duration3": "8 semaines",
+                "courses.title1": "Maîtrise Avancée du Design UI/UX",
+                "courses.title2": "Développement Web Full-Stack Pro",
+                "courses.title3": "Leadership Stratégique & Innovation",
+                "courses.desc1": "Créez des expériences époustouflantes centrées sur l'utilisateur qui stimulent l'engagement et la conversion",
+                "courses.desc2": "Créez des applications prêtes pour la production avec des frameworks modernes et les meilleures pratiques",
+                "courses.desc3": "Transformez votre organisation avec une pensée visionnaire et des méthodologies agiles",
+                "value.title": "Pourquoi Choisir EduVerse?",
+                "value.subtitle": "Nous réinventons l'éducation pour l'apprenant moderne",
+                "value.point1.title": "Contenu Dirigé par des Experts",
+                "value.point1.desc": "Apprenez auprès de leaders de l'industrie avec une expérience réelle et des antécédents éprouvés",
+                "value.point2.title": "Apprenez à Votre Rythme",
+                "value.point2.desc": "Horaires flexibles et accès à vie aux supports de cours sur n'importe quel appareil",
+                "value.point3.title": "Communauté Mondiale",
+                "value.point3.desc": "Connectez-vous avec des apprenants du monde entier et établissez des relations professionnelles durables",
+                "value.satisfaction": "Taux de Satisfaction",
+                "cta.title": "Prêt à Transformer Votre Avenir?",
+                "cta.subtitle": "Rejoignez 50 000+ apprenants qui font déjà progresser leur carrière avec EduVerse",
+                "cta.button1": "Commencer à Apprendre Aujourd'hui",
+                "cta.button2": "Explorer les Cours Gratuits",
+                "stats.students": "Étudiants Actifs",
+                "stats.courses": "Cours Premium",
+                "stats.instructors": "Instructeurs Experts",
+                "stats.completion": "Taux d'Achèvement",
+                "testimonials.title": "Histoires de Réussite",
+                "testimonials.subtitle": "Transformations réelles de notre communauté d'apprentissage",
+                "testimonials.quote1": "\"EduVerse a complètement transformé ma carrière. Le cours UI/UX m'a donné les compétences pour décrocher l'emploi de mes rêves dans une grande entreprise technologique.\"",
+                "testimonials.quote2": "\"La qualité de l'enseignement est inégalée. Je suis passé de débutant à la création d'applications full-stack en seulement 4 mois.\"",
+                "testimonials.quote3": "\"Le cours de stratégie commerciale m'a aidé à faire évoluer ma startup de 5 à 50 employés. Le retour sur investissement a été incroyable.\"",
+                "testimonials.role1": "Designer de Produit",
+                "testimonials.role2": "Développeur Full-Stack",
+                "testimonials.role3": "PDG & Fondateur",
+                "instructors.title": "Apprenez des Meilleurs",
+                "instructors.subtitle": "Leaders de l'industrie et innovateurs guidant votre parcours",
+                "instructors.expert": "Expert Principal",
+                "instructors.featured": "En Vedette",
+                "instructors.title1": "Directeur du Design",
+                "instructors.title2": "Développeur Senior",
+                "instructors.title3": "Consultant en Stratégie",
+                "instructors.title4": "Expert Marketing",
+                "instructors.students1": "45K+ étudiants",
+                "instructors.students2": "38K+ étudiants",
+                "instructors.students3": "52K+ étudiants",
+                "instructors.students4": "29K+ étudiants",
+                "insights.title": "Dernières Perspectives",
+                "insights.subtitle": "Tendances, conseils et inspiration pour les apprenants permanents",
+                "insights.category1": "Futur de l'Apprentissage",
+                "insights.category2": "Conseils Carrière",
+                "insights.category3": "Histoires de Réussite",
+                "insights.article1.title": "La Révolution de l'IA dans l'Éducation: Ce que les Apprenants Doivent Savoir",
+                "insights.article1.desc": "Découvrez comment l'intelligence artificielle transforme le paysage de l'apprentissage et quelles compétences compteront le plus dans la décennie à venir.",
+                "insights.article2.title": "5 Compétences Dont Tout Professionnel a Besoin en 2026",
+                "insights.article2.desc": "Gardez une longueur d'avance avec ces compétences essentielles",
+                "insights.article3.title": "Comment l'Apprentissage à Distance a Changé Ma Vie",
+                "insights.article3.desc": "Un parcours personnel de la transition de carrière à l'épanouissement",
+                "insights.readmore": "Lire l'Article Complet",
+                "newsletter.title": "Restez Informé",
+                "newsletter.subtitle": "Recevez des informations hebdomadaires, des annonces de nouveaux cours et des offres exclusives dans votre boîte de réception",
+                "newsletter.placeholder": "Entrez votre adresse e-mail",
+                "newsletter.button": "S'abonner Maintenant",
+                "newsletter.privacy": "Nous respectons votre vie privée. Désabonnez-vous à tout moment.",
+                "footer.tagline": "Donner aux apprenants du monde entier les moyens de réaliser leurs rêves grâce à une éducation transformatrice.",
+                "footer.platform": "Plateforme",
+                "footer.company": "Entreprise",
+                "footer.support": "Assistance",
+                "footer.link1": "Parcourir les Cours",
+                "footer.link2": "Catégories",
+                "footer.link3": "Tarifs",
+                "footer.link4": "Pour les Entreprises",
+                "footer.link5": "À Propos",
+                "footer.link6": "Carrières",
+                "footer.link7": "Presse",
+                "footer.link8": "Contact",
+                "footer.link9": "Centre d'Aide",
+                "footer.link10": "Conditions d'Utilisation",
+                "footer.link11": "Politique de Confidentialité",
+                "footer.link12": "Politique des Cookies",
+                "footer.copyright": "© 2026 The Brains University. Tous droits réservés.",
+                "footer.made": "Fait avec ❤️ par Bianse Design"
+            }
+        };
+
+        // Initialize
+        let currentLang = localStorage.getItem('language') || 'en';
+        let currentTheme = localStorage.getItem('theme') || 'light';
+
+        // Apply theme on load
+        if (currentTheme === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            document.getElementById('sunIcon').classList.add('hidden');
+            document.getElementById('moonIcon').classList.remove('hidden');
+        }
+
+        // Apply language on load
+        updateLanguage(currentLang);
+
+        // Language switcher
+        document.getElementById('langSwitch').addEventListener('click', () => {
+            currentLang = currentLang === 'en' ? 'fr' : 'en';
+            localStorage.setItem('language', currentLang);
+            updateLanguage(currentLang);
+        });
+
+        function updateLanguage(lang) {
+            document.getElementById('currentLang').textContent = lang.toUpperCase();
+            document.documentElement.setAttribute('lang', lang);
+            
+            // Update all translated elements
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+
+            // Update placeholder
+            const emailInput = document.querySelector('input[data-translate-placeholder]');
+            if (emailInput) {
+                emailInput.placeholder = lang === 'en' 
+                    ? 'Enter your email address' 
+                    : 'Entrez votre adresse e-mail';
+            }
+        }
+
+        // Theme toggle
+        document.getElementById('themeToggle').addEventListener('click', () => {
+            currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+            localStorage.setItem('theme', currentTheme);
+            
+            if (currentTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                document.getElementById('sunIcon').classList.add('hidden');
+                document.getElementById('moonIcon').classList.remove('hidden');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+                document.getElementById('sunIcon').classList.remove('hidden');
+                document.getElementById('moonIcon').classList.add('hidden');
+            }
+        });
+
+        // Scroll reveal animation
+        const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+        
+        const revealOnScroll = () => {
+            const windowHeight = window.innerHeight;
+            
+            revealElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const revealPoint = 100;
+                
+                if (elementTop < windowHeight - revealPoint) {
+                    element.classList.add('active');
+                }
+            });
+        };
+
+        // Initial check
+        revealOnScroll();
+
+        // Scroll event with throttle
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    revealOnScroll();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+
+        // Parallax effect for hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.parallax-slow');
+            
+            parallaxElements.forEach(element => {
+                const speed = 0.5;
+                element.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+
+        // Newsletter form submission
+        document.querySelector('form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = e.target.querySelector('input[type="email"]').value;
+            alert(currentLang === 'en' 
+                ? `Thank you for subscribing! We'll send updates to ${email}` 
+                : `Merci de vous être abonné! Nous enverrons des mises à jour à ${email}`);
+            e.target.reset();
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
