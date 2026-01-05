@@ -231,6 +231,22 @@
         .theme-transition {
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
+
+        @keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.96);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.animate-fadeIn {
+    animation: fadeIn 0.25s ease-out;
+}
+
     </style>
 </head>
 <body class="theme-transition">
@@ -489,16 +505,19 @@
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Course Card 1 -->
                 <div class="reveal hover-lift rounded-3xl overflow-hidden glass-effect" style="transition-delay: 0.1s;">
-                    <div class="image-overlay aspect-video">
-                        <img src="https://picsum.photos/seed/design1/600/400" alt="Course" class="w-full h-full object-cover">
-                        
-                    </div>
+                    <div class="image-overlay aspect-video cursor-pointer" 
+     onclick="openImageModal('media/images/medecineFaculty.jpg')">
+    <img src="media/images/medecineFaculty.jpg"
+         alt="Health Sciences"
+         class="w-full h-full object-cover transition">
+</div>
+
                     <div class="p-6">
                         
                         <h3 class="text-xl font-bold mb-2 theme-transition" style="color: var(--text-primary);" data-translate="courses.title1">
                             Health Sciences
                         </h3>
-                       <div class="flex items-center gap-4 mb-3">
+                       <div class=" flex flex-wrap items-center gap-3 mb-3">
                              <span class="px-3 py-1 rounded-full text-sm font-medium theme-transition" style="background: var(--bg-tertiary); color: var(--text-secondary);" data-translate="courses.category1">Nursing</span>
                              <span class="px-3 py-1 rounded-full text-sm font-medium theme-transition" style="background: var(--bg-tertiary); color: var(--text-secondary);" data-translate="courses.category2">Physiotherapy</span>
                              <span class="px-3 py-1 rounded-full text-sm font-medium theme-transition" style="background: var(--bg-tertiary); color: var(--text-secondary);" data-translate="courses.category3">Dental therapy</span>
@@ -513,73 +532,164 @@
                 </div>
 
                 <!-- Course Card 2 -->
-                <div class="reveal hover-lift rounded-3xl overflow-hidden glass-effect" style="transition-delay: 0.2s;">
-                    <div class="image-overlay aspect-video">
-                        <img src="https://picsum.photos/seed/tech1/600/400" alt="Course" class="w-full h-full object-cover">
-                    </div>
+                <div class="reveal hover-lift rounded-3xl overflow-hidden glass-effect" style="transition-delay: 0.1s;">
+                    <div class="image-overlay aspect-video cursor-pointer" 
+     onclick="openImageModal('media/images/medecineFaculty.jpg')">
+    <img src="media/images/medecineFaculty.jpg"
+         alt="Health Sciences"
+         class="w-full h-full object-cover transition">
+</div>
+
                     <div class="p-6">
-                        <div class="flex items-center gap-2 mb-3">
-                            <span class="px-3 py-1 rounded-full text-xs font-medium theme-transition" style="background: var(--bg-tertiary); color: var(--text-secondary);" data-translate="courses.category2">Development</span>
-                            <span class="text-xs theme-transition" style="color: var(--text-secondary);">•</span>
-                            <span class="text-xs theme-transition" style="color: var(--text-secondary);" data-translate="courses.duration2">16 weeks</span>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2 theme-transition" style="color: var(--text-primary);" data-translate="courses.title2">
-                            Full-Stack Web Development Pro
+                        
+                        <h3 class="text-xl font-bold mb-2 theme-transition" style="color: var(--text-primary);" data-translate="courses.title1">
+                            Health Sciences
                         </h3>
-                        <p class="mb-4 text-sm theme-transition" style="color: var(--text-secondary);" data-translate="courses.desc2">
-                            Build production-ready applications with modern frameworks and best practices
-                        </p>
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center gap-2">
-                                <div class="w-8 h-8 rounded-full" style="background: linear-gradient(135deg, #ec4899, #f43f5e);"></div>
-                                <span class="text-sm font-medium theme-transition" style="color: var(--text-primary);">Marcus Reid</span>
-                            </div>
-                            <div class="flex items-center gap-1">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="color: #f59e0b;">
-                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                                </svg>
-                                <span class="text-sm font-bold theme-transition" style="color: var(--text-primary);">5.0</span>
-                            </div>
+                       <div class=" flex flex-wrap items-center gap-3 mb-3">
+                             <span class="px-3 py-1 rounded-full text-sm font-medium theme-transition" style="background: var(--bg-tertiary); color: var(--text-secondary);" data-translate="courses.category1">Nursing</span>
+                             <span class="px-3 py-1 rounded-full text-sm font-medium theme-transition" style="background: var(--bg-tertiary); color: var(--text-secondary);" data-translate="courses.category2">Physiotherapy</span>
+                             <span class="px-3 py-1 rounded-full text-sm font-medium theme-transition" style="background: var(--bg-tertiary); color: var(--text-secondary);" data-translate="courses.category3">Dental therapy</span>
+                             <span class="px-3 py-1 rounded-full text-sm font-medium theme-transition" style="background: var(--bg-tertiary); color: var(--text-secondary);" data-translate="courses.category4">Nutrition and Dietetics</span>
+                             <span class="px-3 py-1 rounded-full text-sm font-medium theme-transition" style="background: var(--bg-tertiary); color: var(--text-secondary);" data-translate="courses.category5">Pharmacy technology</span>
+                             <span class="px-3 py-1 rounded-full text-sm font-medium theme-transition" style="background: var(--bg-tertiary); color: var(--text-secondary);" data-translate="courses.category6">Medical Lab Sciences</span>
+                             <span class="px-3 py-1 rounded-full text-sm font-medium theme-transition" style="background: var(--bg-tertiary); color: var(--text-secondary);" data-translate="courses.category7">Medical imaging technology</span>
+                             <span class="px-3 py-1 rounded-full text-sm font-medium theme-transition" style="background: var(--bg-tertiary); color: var(--text-secondary);" data-translate="courses.category8">Health care management</span>
                         </div>
+                        
                     </div>
                 </div>
 
                 <!-- Course Card 3 -->
-                <div class="reveal hover-lift rounded-3xl overflow-hidden glass-effect" style="transition-delay: 0.3s;">
-                    <div class="image-overlay aspect-video">
-                        <img src="https://picsum.photos/seed/business1/600/400" alt="Course" class="w-full h-full object-cover">
-                        <div class="absolute top-4 left-4 px-3 py-1.5 rounded-full text-xs font-semibold z-10" style="background: linear-gradient(135deg, #ec4899, #f43f5e); color: white;">
-                            <span data-translate="courses.new">NEW</span>
-                        </div>
-                    </div>
+                <div class="reveal hover-lift rounded-3xl overflow-hidden glass-effect" style="transition-delay: 0.1s;">
+                    <div class="image-overlay aspect-video cursor-pointer" 
+     onclick="openImageModal('media/images/medecineFaculty.jpg')">
+    <img src="media/images/medecineFaculty.jpg"
+         alt="Health Sciences"
+         class="w-full h-full object-cover transition">
+</div>
+
                     <div class="p-6">
-                        <div class="flex items-center gap-2 mb-3">
-                            <span class="px-3 py-1 rounded-full text-xs font-medium theme-transition" style="background: var(--bg-tertiary); color: var(--text-secondary);" data-translate="courses.category3">Business</span>
-                            <span class="text-xs theme-transition" style="color: var(--text-secondary);">•</span>
-                            <span class="text-xs theme-transition" style="color: var(--text-secondary);" data-translate="courses.duration3">8 weeks</span>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2 theme-transition" style="color: var(--text-primary);" data-translate="courses.title3">
-                            Strategic Leadership & Innovation
+                        
+                        <h3 class="text-xl font-bold mb-2 theme-transition" style="color: var(--text-primary);" data-translate="courses.title1">
+                            Health Sciences
                         </h3>
-                        <p class="mb-4 text-sm theme-transition" style="color: var(--text-secondary);" data-translate="courses.desc3">
-                            Transform your organization with visionary thinking and agile methodologies
-                        </p>
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center gap-2">
-                                <div class="w-8 h-8 rounded-full" style="background: linear-gradient(135deg, #06b6d4, #3b82f6);"></div>
-                                <span class="text-sm font-medium theme-transition" style="color: var(--text-primary);">Aisha Patel</span>
-                            </div>
-                            <div class="flex items-center gap-1">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="color: #f59e0b;">
-                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                                </svg>
-                                <span class="text-sm font-bold theme-transition" style="color: var(--text-primary);">4.8</span>
-                            </div>
+                       <div class=" flex flex-wrap items-center gap-3 mb-3">
+                             <span class="px-3 py-1 rounded-full text-sm font-medium theme-transition" style="background: var(--bg-tertiary); color: var(--text-secondary);" data-translate="courses.category1">Nursing</span>
+                             <span class="px-3 py-1 rounded-full text-sm font-medium theme-transition" style="background: var(--bg-tertiary); color: var(--text-secondary);" data-translate="courses.category2">Physiotherapy</span>
+                             <span class="px-3 py-1 rounded-full text-sm font-medium theme-transition" style="background: var(--bg-tertiary); color: var(--text-secondary);" data-translate="courses.category3">Dental therapy</span>
+                             <span class="px-3 py-1 rounded-full text-sm font-medium theme-transition" style="background: var(--bg-tertiary); color: var(--text-secondary);" data-translate="courses.category4">Nutrition and Dietetics</span>
+                             <span class="px-3 py-1 rounded-full text-sm font-medium theme-transition" style="background: var(--bg-tertiary); color: var(--text-secondary);" data-translate="courses.category5">Pharmacy technology</span>
+                             <span class="px-3 py-1 rounded-full text-sm font-medium theme-transition" style="background: var(--bg-tertiary); color: var(--text-secondary);" data-translate="courses.category6">Medical Lab Sciences</span>
+                             <span class="px-3 py-1 rounded-full text-sm font-medium theme-transition" style="background: var(--bg-tertiary); color: var(--text-secondary);" data-translate="courses.category7">Medical imaging technology</span>
+                             <span class="px-3 py-1 rounded-full text-sm font-medium theme-transition" style="background: var(--bg-tertiary); color: var(--text-secondary);" data-translate="courses.category8">Health care management</span>
                         </div>
+                        
                     </div>
                 </div>
+                       
+                 <!-- Course Card 4 -->
+                <div class="reveal hover-lift rounded-3xl overflow-hidden glass-effect" style="transition-delay: 0.1s;">
+                    <div class="image-overlay aspect-video cursor-pointer" 
+     onclick="openImageModal('media/images/medecineFaculty.jpg')">
+    <img src="media/images/medecineFaculty.jpg"
+         alt="Health Sciences"
+         class="w-full h-full object-cover transition">
+</div>
+
+                    <div class="p-6">
+                        
+                        <h3 class="text-xl font-bold mb-2 theme-transition" style="color: var(--text-primary);" data-translate="courses.title1">
+                            Health Sciences
+                        </h3>
+                       <div class=" flex flex-wrap items-center gap-3 mb-3">
+                             <span class="px-3 py-1 rounded-full text-sm font-medium theme-transition" style="background: var(--bg-tertiary); color: var(--text-secondary);" data-translate="courses.category1">Nursing</span>
+                             <span class="px-3 py-1 rounded-full text-sm font-medium theme-transition" style="background: var(--bg-tertiary); color: var(--text-secondary);" data-translate="courses.category2">Physiotherapy</span>
+                             <span class="px-3 py-1 rounded-full text-sm font-medium theme-transition" style="background: var(--bg-tertiary); color: var(--text-secondary);" data-translate="courses.category3">Dental therapy</span>
+                             <span class="px-3 py-1 rounded-full text-sm font-medium theme-transition" style="background: var(--bg-tertiary); color: var(--text-secondary);" data-translate="courses.category4">Nutrition and Dietetics</span>
+                             <span class="px-3 py-1 rounded-full text-sm font-medium theme-transition" style="background: var(--bg-tertiary); color: var(--text-secondary);" data-translate="courses.category5">Pharmacy technology</span>
+                             <span class="px-3 py-1 rounded-full text-sm font-medium theme-transition" style="background: var(--bg-tertiary); color: var(--text-secondary);" data-translate="courses.category6">Medical Lab Sciences</span>
+                             <span class="px-3 py-1 rounded-full text-sm font-medium theme-transition" style="background: var(--bg-tertiary); color: var(--text-secondary);" data-translate="courses.category7">Medical imaging technology</span>
+                             <span class="px-3 py-1 rounded-full text-sm font-medium theme-transition" style="background: var(--bg-tertiary); color: var(--text-secondary);" data-translate="courses.category8">Health care management</span>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                 <!-- Course Card 5 -->
+                <div class="reveal hover-lift rounded-3xl overflow-hidden glass-effect" style="transition-delay: 0.1s;">
+                    <div class="image-overlay aspect-video cursor-pointer" 
+     onclick="openImageModal('media/images/medecineFaculty.jpg')">
+    <img src="media/images/medecineFaculty.jpg"
+         alt="Health Sciences"
+         class="w-full h-full object-cover transition">
+</div>
+
+                    <div class="p-6">
+                        
+                        <h3 class="text-xl font-bold mb-2 theme-transition" style="color: var(--text-primary);" data-translate="courses.title1">
+                            Health Sciences
+                        </h3>
+                       <div class=" flex flex-wrap items-center gap-3 mb-3">
+                             <span class="px-3 py-1 rounded-full text-sm font-medium theme-transition" style="background: var(--bg-tertiary); color: var(--text-secondary);" data-translate="courses.category1">Nursing</span>
+                             <span class="px-3 py-1 rounded-full text-sm font-medium theme-transition" style="background: var(--bg-tertiary); color: var(--text-secondary);" data-translate="courses.category2">Physiotherapy</span>
+                             <span class="px-3 py-1 rounded-full text-sm font-medium theme-transition" style="background: var(--bg-tertiary); color: var(--text-secondary);" data-translate="courses.category3">Dental therapy</span>
+                             <span class="px-3 py-1 rounded-full text-sm font-medium theme-transition" style="background: var(--bg-tertiary); color: var(--text-secondary);" data-translate="courses.category4">Nutrition and Dietetics</span>
+                             <span class="px-3 py-1 rounded-full text-sm font-medium theme-transition" style="background: var(--bg-tertiary); color: var(--text-secondary);" data-translate="courses.category5">Pharmacy technology</span>
+                             <span class="px-3 py-1 rounded-full text-sm font-medium theme-transition" style="background: var(--bg-tertiary); color: var(--text-secondary);" data-translate="courses.category6">Medical Lab Sciences</span>
+                             <span class="px-3 py-1 rounded-full text-sm font-medium theme-transition" style="background: var(--bg-tertiary); color: var(--text-secondary);" data-translate="courses.category7">Medical imaging technology</span>
+                             <span class="px-3 py-1 rounded-full text-sm font-medium theme-transition" style="background: var(--bg-tertiary); color: var(--text-secondary);" data-translate="courses.category8">Health care management</span>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                 <!-- Course Card 6 -->
+                <div class="reveal hover-lift rounded-3xl overflow-hidden glass-effect" style="transition-delay: 0.1s;">
+                    <div class="image-overlay aspect-video cursor-pointer" 
+     onclick="openImageModal('media/images/medecineFaculty.jpg')">
+    <img src="media/images/medecineFaculty.jpg"
+         alt="Health Sciences"
+         class="w-full h-full object-cover transition">
+</div>
+
+                    <div class="p-6">
+                        
+                        <h3 class="text-xl font-bold mb-2 theme-transition" style="color: var(--text-primary);" data-translate="courses.title1">
+                            Health Sciences
+                        </h3>
+                       <div class=" flex flex-wrap items-center gap-3 mb-3">
+                             <span class="px-3 py-1 rounded-full text-sm font-medium theme-transition" style="background: var(--bg-tertiary); color: var(--text-secondary);" data-translate="courses.category1">Nursing</span>
+                             <span class="px-3 py-1 rounded-full text-sm font-medium theme-transition" style="background: var(--bg-tertiary); color: var(--text-secondary);" data-translate="courses.category2">Physiotherapy</span>
+                             <span class="px-3 py-1 rounded-full text-sm font-medium theme-transition" style="background: var(--bg-tertiary); color: var(--text-secondary);" data-translate="courses.category3">Dental therapy</span>
+                             <span class="px-3 py-1 rounded-full text-sm font-medium theme-transition" style="background: var(--bg-tertiary); color: var(--text-secondary);" data-translate="courses.category4">Nutrition and Dietetics</span>
+                             <span class="px-3 py-1 rounded-full text-sm font-medium theme-transition" style="background: var(--bg-tertiary); color: var(--text-secondary);" data-translate="courses.category5">Pharmacy technology</span>
+                             <span class="px-3 py-1 rounded-full text-sm font-medium theme-transition" style="background: var(--bg-tertiary); color: var(--text-secondary);" data-translate="courses.category6">Medical Lab Sciences</span>
+                             <span class="px-3 py-1 rounded-full text-sm font-medium theme-transition" style="background: var(--bg-tertiary); color: var(--text-secondary);" data-translate="courses.category7">Medical imaging technology</span>
+                             <span class="px-3 py-1 rounded-full text-sm font-medium theme-transition" style="background: var(--bg-tertiary); color: var(--text-secondary);" data-translate="courses.category8">Health care management</span>
+                        </div>
+                        
+                    </div>
+                </div>
+
             </div>
         </div>
+        <div id="imageModal"
+     class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 backdrop-blur-sm">
+    
+    <div class="relative max-w-5xl w-full px-4 animate-fadeIn">
+        <!-- Close button -->
+        <button onclick="closeImageModal()"
+                class="absolute -top-10 right-4 text-white text-3xl hover:opacity-70">
+            &times;
+        </button>
+
+        <!-- Image -->
+        <img id="modalImage"
+             src=""
+             class="w-full max-h-[85vh] object-contain rounded-2xl shadow-2xl">
+    </div>
+</div>
+
     </section>
 
     <!-- Learning Value Section -->
@@ -588,10 +698,10 @@
             <div class="grid lg:grid-cols-2 gap-16 items-center">
                 <div class="reveal-left">
                     <h2 class="heading-display mb-6 theme-transition" style="font-size: clamp(2rem, 4vw, 3.5rem); color: var(--text-primary);" data-translate="value.title">
-                        Why Choose EduVerse?
+                        Why Choose The Brains University?
                     </h2>
                     <p class="text-xl mb-12 theme-transition" style="color: var(--text-secondary);" data-translate="value.subtitle">
-                        We're reimagining education for the modern learner
+                        We Offer a variety of Benefits To our students as listed below:
                     </p>
 
                     <div class="space-y-8">
@@ -829,20 +939,17 @@
                 </p>
             </div>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Instructor 1 -->
                 <div class="reveal text-center group" style="transition-delay: 0.1s;">
                     <div class="relative mb-6 inline-block">
                         <div class="w-48 h-48 rounded-3xl overflow-hidden hover-lift">
                             <img src="https://picsum.photos/seed/instructor1/400/400" alt="Instructor" class="w-full h-full object-cover">
                         </div>
-                        <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full text-xs font-semibold" style="background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary)); color: white;">
-                            <span data-translate="instructors.expert">Top Expert</span>
-                        </div>
+                        
                     </div>
-                    <h3 class="text-xl font-bold mb-1 theme-transition" style="color: var(--text-primary);">Dr. Sarah Chen</h3>
-                    <p class="text-sm mb-2 theme-transition" style="color: var(--text-secondary);" data-translate="instructors.title1">Design Director</p>
-                    <p class="text-xs theme-transition" style="color: var(--text-secondary);" data-translate="instructors.students1">45K+ students</p>
+                    <h3 class="text-xl font-bold mb-1 theme-transition" style="color: var(--text-primary);">University Of Bamenda</h3>
+                   
                 </div>
 
                 <!-- Instructor 2 -->
@@ -852,9 +959,8 @@
                             <img src="https://picsum.photos/seed/instructor2/400/400" alt="Instructor" class="w-full h-full object-cover">
                         </div>
                     </div>
-                    <h3 class="text-xl font-bold mb-1 theme-transition" style="color: var(--text-primary);">Marcus Reid</h3>
-                    <p class="text-sm mb-2 theme-transition" style="color: var(--text-secondary);" data-translate="instructors.title2">Senior Developer</p>
-                    <p class="text-xs theme-transition" style="color: var(--text-secondary);" data-translate="instructors.students2">38K+ students</p>
+                    <h3 class="text-xl font-bold mb-1 theme-transition" style="color: var(--text-primary);">University Of Douala</h3>
+                    
                 </div>
 
                 <!-- Instructor 3 -->
@@ -863,26 +969,13 @@
                         <div class="w-48 h-48 rounded-3xl overflow-hidden hover-lift">
                             <img src="https://picsum.photos/seed/instructor3/400/400" alt="Instructor" class="w-full h-full object-cover">
                         </div>
-                        <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full text-xs font-semibold" style="background: linear-gradient(135deg, #ec4899, #f43f5e); color: white;">
-                            <span data-translate="instructors.featured">Featured</span>
-                        </div>
+                        
                     </div>
-                    <h3 class="text-xl font-bold mb-1 theme-transition" style="color: var(--text-primary);">Aisha Patel</h3>
-                    <p class="text-sm mb-2 theme-transition" style="color: var(--text-secondary);" data-translate="instructors.title3">Strategy Consultant</p>
-                    <p class="text-xs theme-transition" style="color: var(--text-secondary);" data-translate="instructors.students3">52K+ students</p>
+                    <h3 class="text-xl font-bold mb-1 theme-transition" style="color: var(--text-primary);">University Of Dschang</h3>
+                    
                 </div>
 
-                <!-- Instructor 4 -->
-                <div class="reveal text-center group" style="transition-delay: 0.4s;">
-                    <div class="relative mb-6 inline-block">
-                        <div class="w-48 h-48 rounded-3xl overflow-hidden hover-lift">
-                            <img src="https://picsum.photos/seed/instructor4/400/400" alt="Instructor" class="w-full h-full object-cover">
-                        </div>
-                    </div>
-                    <h3 class="text-xl font-bold mb-1 theme-transition" style="color: var(--text-primary);">Alex Johnson</h3>
-                    <p class="text-sm mb-2 theme-transition" style="color: var(--text-secondary);" data-translate="instructors.title4">Marketing Expert</p>
-                    <p class="text-xs theme-transition" style="color: var(--text-secondary);" data-translate="instructors.students4">29K+ students</p>
-                </div>
+                
             </div>
         </div>
     </section>
@@ -990,7 +1083,7 @@
                 <button 
                     type="submit" 
                     class="px-8 py-4 rounded-full font-semibold text-white hover:scale-105 transition-transform whitespace-nowrap" 
-                    style="background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));"
+                    style="background: linear-gradient(135deg, var(--accent-primary), var(--accent-primary));"
                     data-translate="newsletter.button"
                 >
                     Subscribe Now
@@ -1008,20 +1101,9 @@
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
                 <div class="lg:col-span-2">
-                    <div class="flex items-center gap-2 mb-6">
-                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect width="40" height="40" rx="12" fill="url(#footer-logo-gradient)"/>
-                            <path d="M20 10L28 15V25L20 30L12 25V15L20 10Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M20 20L28 15M20 20L12 15M20 20V30" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            <defs>
-                                <linearGradient id="footer-logo-gradient" x1="0" y1="0" x2="40" y2="40">
-                                    <stop offset="0%" stop-color="#6366f1"/>
-                                    <stop offset="100%" stop-color="#8b5cf6"/>
-                                </linearGradient>
-                            </defs>
-                        </svg>
-                        <span class="text-xl font-bold heading-display theme-transition" style="color: var(--text-primary);">EduVerse</span>
-                    </div>
+                    <div class="flex items-center gap-2 mb-6"> 
+                       <img src="media/images/brainslogo.png" alt="The Brains Logo" class="h-12 w-auto">
+                </div>
                     <p class="mb-6 theme-transition" style="color: var(--text-secondary);" data-translate="footer.tagline">
                         Empowering learners worldwide to achieve their dreams through transformative education.
                     </p>
@@ -1123,21 +1205,18 @@
                 "courses.title": "Featured Journeys",
                 "courses.subtitle": "Handpicked courses to accelerate your growth",
                 "courses.viewall": "View All Courses",
-                "courses.bestseller": "BESTSELLER",
-                "courses.new": "NEW",
+                
                 "courses.category1": "Design",
                 "courses.category2": "Development",
                 "courses.category3": "Business",
-                "courses.duration1": "12 weeks",
-                "courses.duration2": "16 weeks",
-                "courses.duration3": "8 weeks",
+                
                 "courses.title1": "Advanced UI/UX Design Mastery",
                 "courses.title2": "Full-Stack Web Development Pro",
                 "courses.title3": "Strategic Leadership & Innovation",
                 "courses.desc1": "Create stunning, user-centered experiences that drive engagement and conversion",
                 "courses.desc2": "Build production-ready applications with modern frameworks and best practices",
                 "courses.desc3": "Transform your organization with visionary thinking and agile methodologies",
-                "value.title": "Why Choose EduVerse?",
+                "value.title": "Why Choose TBU?",
                 "value.subtitle": "We're reimagining education for the modern learner",
                 "value.point1.title": "Expert-Led Content",
                 "value.point1.desc": "Learn from industry leaders with real-world experience and proven track records",
@@ -1149,7 +1228,7 @@
                 "cta.title": "Ready to Transform Your Future?",
                 "cta.subtitle": "Join 50,000+ learners who are already advancing their careers with EduVerse",
                 "cta.button1": "Start Learning Today",
-                "cta.button2": "Explore Free Courses",
+                "cta.button2": "Explore Popular Courses",
                 "stats.students": "Active Students",
                 "stats.courses": "Premium Courses",
                 "stats.instructors": "Expert Instructors",
@@ -1162,8 +1241,8 @@
                 "testimonials.role1": "Product Designer",
                 "testimonials.role2": "Full-Stack Developer",
                 "testimonials.role3": "CEO & Founder",
-                "instructors.title": "Learn From The Best",
-                "instructors.subtitle": "Industry leaders and innovators guiding your journey",
+                "instructors.title": "Our Partners",
+                "instructors.subtitle": "They trust us.",
                 "instructors.expert": "Top Expert",
                 "instructors.featured": "Featured",
                 "instructors.title1": "Design Director",
@@ -1537,6 +1616,31 @@ function initAutoSlide() {
         });
     }
 }
+
+function openImageModal(src) {
+    const modal = document.getElementById('imageModal');
+    const image = document.getElementById('modalImage');
+
+    image.src = src;
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeImageModal() {
+    const modal = document.getElementById('imageModal');
+
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    document.body.style.overflow = '';
+}
+
+// Close when clicking background
+document.getElementById('imageModal').addEventListener('click', function (e) {
+    if (e.target === this) closeImageModal();
+});
+
+
 
 // Start auto slide after a short delay to ensure DOM is ready
 setTimeout(initAutoSlide, 500);
