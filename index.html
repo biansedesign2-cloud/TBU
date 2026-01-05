@@ -28,7 +28,7 @@
             --accent-tertiary: #C42F33;
             --accent-quaternary: #4CAF50;
             --glass-bg: rgba(255, 255, 255, 0.7);
-            --glass-border: rgba(255, 255, 255, 0.3);
+            --glass-border: rgba(160, 160, 160, 0.3);
             --shadow-color: rgba(0, 0, 0, 0.1);
         }
 
@@ -194,7 +194,7 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            background: linear-gradient(90deg, var(--accent-quaternary));
             transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
@@ -251,11 +251,11 @@
                 </div>
 
                 <div class="hidden lg:flex items-center gap-8">
-                    <a href="#" class="nav-link theme-transition" style="color: var(--text-primary);" data-translate="nav.home">Home</a>
-                    <a href="#" class="nav-link theme-transition" style="color: var(--text-primary);" data-translate="nav.about">About</a>
-                    <a href="#" class="nav-link theme-transition" style="color: var(--text-primary);" data-translate="nav.programs">Programs</a>
-                    <a href="#" class="nav-link theme-transition" style="color: var(--text-primary);" data-translate="nav.faculties">Faculties</a>
-                    <a href="#" class="nav-link theme-transition" style="color: var(--text-primary);" data-translate="nav.contact">Contact</a>
+                    <a href="#hero" class="nav-link theme-transition" style="color: var(--text-primary);" data-translate="nav.home">Home</a>
+                    <a href="programs" class="nav-link theme-transition" style="color: var(--text-primary);" data-translate="nav.programs">Programs</a>
+                    <a href="#faculties" class="nav-link theme-transition" style="color: var(--text-primary);" data-translate="nav.faculties">Faculties</a>
+                    <a href="#about" class="nav-link theme-transition" style="color: var(--text-primary);" data-translate="nav.about">About</a>
+                    <a href="#contact" class="nav-link theme-transition" style="color: var(--text-primary);" data-translate="nav.contact">Contact</a>
                 </div>
 
                 <div class="flex items-center gap-4">
@@ -291,7 +291,7 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="relative min-h-screen flex items-center pt-24 overflow-hidden">
+    <section id="hero" class="relative min-h-screen flex items-center pt-24 overflow-hidden">
         <div class="absolute inset-0 grid-pattern"></div>
         
         <div class="max-w-7xl mx-auto px-6 lg:px-8 py-20 relative z-10">
@@ -309,12 +309,12 @@
                         A centre for teaching, learning, innovation, professionalism entrepreneurship and excellence.
                     </p>
                     <div class="flex flex-wrap gap-4">
-                        <button class="px-8 py-4 rounded-full font-semibold text-white text-lg hover:opacity-90 transition-all transform hover:scale-105" style="background: linear-gradient(135deg, var(--accent-primary), var(--accent-tertiary));" data-translate="hero.cta1">
+                        <a href="#programs" class="px-8 py-4 rounded-full font-semibold text-white text-lg hover:opacity-90 transition-all transform hover:scale-105" style="background: linear-gradient(135deg, var(--accent-primary), var(--accent-tertiary));" data-translate="hero.cta1">
                             Explore Courses
-                        </button>
-                        <button class="px-8 py-4 rounded-full font-semibold glass-effect hover-lift theme-transition" style="color: var(--text-primary);" data-translate="hero.cta2">
+                        </a>
+                        <a href="contact" class="px-8 py-4 rounded-full font-semibold glass-effect hover-lift theme-transition" style="color: var(--text-primary);" data-translate="hero.cta2">
                             Contact Us
-                        </button>
+                        </a>
                     </div>
                 </div>
 
@@ -323,31 +323,42 @@
                         <!-- Decorative Circle -->
                         <div class="absolute -top-10 -right-10 w-64 h-64 rounded-full spin-slow" style="background: linear-gradient(135deg, var(--accent-primary), var(--accent-tertiary)); opacity: 0.1;"></div>
                         
-                        <!-- Hero Cards Cluster -->
-                        <div class="relative space-y-6">
-                            <div class="glass-effect rounded-3xl p-8 hover-lift transform rotate-2">
-                                <div class="flex items-center gap-4 mb-4">
-                                    <div class="w-12 h-12 rounded-full" style="background: linear-gradient(135deg, #6366f1, #8b5cf6);"></div>
-                                    <div>
-                                        <div class="h-3 w-32 rounded theme-transition" style="background: var(--bg-tertiary);"></div>
-                                        <div class="h-2 w-20 rounded mt-2 theme-transition" style="background: var(--bg-tertiary);"></div>
+                         <!-- Hero Slider - Single Card -->
+                        <div class="relative flex justify-center items-center">
+                            <div class="glass-effect rounded-3xl overflow-hidden hover-lift transform -rotate-3 relative group w-full max-w-2xl"
+                                 data-images="media/images/student.jpg|Nos Étudiants|Des étudiants passionnés et engagés dans leur formation,media/images/studhappy.jpg|Joie d'Apprendre|Une ambiance conviviale et stimulante,media/images/show.jpg|Nos Événements|Des moments inoubliables et enrichissants">
+                                <img 
+                                    id="slider-image-1"
+                                    src="media/images/student.jpg" 
+                                    alt="Slide 1" 
+                                    class="w-full h-full object-cover transition-opacity duration-500"
+                                    style="aspect-ratio: 4/3;"
+                                />
+                                <!-- Overlay Info -->
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8">
+                                    <h3 class="text-white text-3xl font-bold mb-3" id="slider-title-1">Our Students</h3>
+                                    <p class="text-white/90 text-base mb-4" id="slider-desc-1">Students who are passionate and committed to their education</p>
+                                    <div class="flex gap-2">
+                                        <span class="px-3 py-1 rounded-full text-xs font-medium bg-white/20 backdrop-blur-sm text-white">Formation</span>
+                                        <span class="px-3 py-1 rounded-full text-xs font-medium bg-white/20 backdrop-blur-sm text-white">Excellence</span>
                                     </div>
                                 </div>
-                                <div class="h-2 w-full rounded theme-transition mb-2" style="background: var(--bg-tertiary);"></div>
-                                <div class="h-2 w-3/4 rounded theme-transition" style="background: var(--bg-tertiary);"></div>
-                            </div>
-
-                            <div class="glass-effect rounded-3xl p-8 hover-lift transform -rotate-2 ml-8">
-                                <div class="flex justify-between items-center mb-6">
-                                    <div class="h-4 w-24 rounded theme-transition" style="background: var(--bg-tertiary);"></div>
-                                    <div class="px-3 py-1 rounded-full text-xs font-medium" style="background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary)); color: white;">
-                                        <span data-translate="hero.card.live">LIVE</span>
-                                    </div>
-                                </div>
-                                <div class="grid grid-cols-3 gap-3">
-                                    <div class="aspect-square rounded-xl theme-transition" style="background: linear-gradient(135deg, #ec4899, #f43f5e);"></div>
-                                    <div class="aspect-square rounded-xl theme-transition" style="background: linear-gradient(135deg, #8b5cf6, #6366f1);"></div>
-                                    <div class="aspect-square rounded-xl theme-transition" style="background: linear-gradient(135deg, #06b6d4, #3b82f6);"></div>
+                                <!-- Navigation Arrows -->
+                                <button onclick="previousSlide(1)" class="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-gradient-to-br from-white/30 to-white/10 backdrop-blur-md flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:scale-110 hover:from-white/40 hover:to-white/20">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                                    </svg>
+                                </button>
+                                <button onclick="nextSlide(1)" class="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-gradient-to-br from-white/30 to-white/10 backdrop-blur-md flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:scale-110 hover:from-white/40 hover:to-white/20">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                    </svg>
+                                </button>
+                                <!-- Slide Indicators -->
+                                <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <div id="indicator-1-0" class="w-2 h-2 rounded-full bg-white cursor-pointer transition-all" onclick="goToSlide(1, 0)"></div>
+                                    <div id="indicator-1-1" class="w-2 h-2 rounded-full bg-white/40 cursor-pointer transition-all" onclick="goToSlide(1, 1)"></div>
+                                    <div id="indicator-1-2" class="w-2 h-2 rounded-full bg-white/40 cursor-pointer transition-all" onclick="goToSlide(1, 2)"></div>
                                 </div>
                             </div>
                         </div>
@@ -369,70 +380,46 @@
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="text-center mb-20 reveal">
                 <h2 class="heading-display mb-4 theme-transition" style="font-size: clamp(2rem, 4vw, 3.5rem); color: var(--text-primary);" data-translate="categories.title">
-                    Explore Your Passion
+                    Welcome to TBU institute
                 </h2>
                 <p class="text-xl theme-transition" style="color: var(--text-secondary);" data-translate="categories.subtitle">
-                    Curated learning paths across diverse disciplines
+                    The Brains University is a professional private higher institute keen to revolutionize training towards job creation by embracing innovation, professionalism and entrepreneurship, while transforming ideas into action.
                 </p>
             </div>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
                 <!-- Category Card 1 -->
-                <div class="reveal morph-card glass-effect p-8 hover-lift cursor-pointer group" style="transition-delay: 0.1s;">
-                    <div class="mb-6 flex gap-2">
+                <div class="reveal morph-card glass-effect p-8 text-center hover-lift cursor-pointer group" style="transition-delay: 0.1s;">
+                    <div class="mb-14 flex gap-2 justify-center">
                         <div class="w-12 h-12 rounded-2xl flex items-center justify-center" style="background: linear-gradient(135deg, #6366f1, #8b5cf6);">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
                                 <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
                             </svg>
                         </div>
-                        <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background: linear-gradient(135deg, #8b5cf6, #ec4899); opacity: 0.6;">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <line x1="2" y1="12" x2="22" y2="12"></line>
-                            </svg>
-                        </div>
                     </div>
-                    <h3 class="text-2xl font-bold mb-3 theme-transition" style="color: var(--text-primary);" data-translate="categories.design.title">Design & Creative</h3>
-                    <p class="mb-4 theme-transition" style="color: var(--text-secondary);" data-translate="categories.design.desc">Master visual storytelling and digital creation</p>
-                    <div class="flex items-center gap-2 text-sm font-medium gradient-text">
-                        <span data-translate="categories.design.courses">128 courses</span>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transform group-hover:translate-x-1 transition-transform">
-                            <line x1="5" y1="12" x2="19" y2="12"></line>
-                            <polyline points="12 5 19 12 12 19"></polyline>
-                        </svg>
-                    </div>
+                    <h3 class="text-2xl font-bold mb-3 theme-transition" style="color: var(--text-primary);" data-translate="categories.design.title">HND / BTS</h3>
+                    <p class="mb-4 theme-transition" style="color: var(--text-secondary);" data-translate="categories.design.desc"> More than 50 specialties</p>
                 </div>
 
                 <!-- Category Card 2 -->
-                <div class="reveal morph-card glass-effect p-8 hover-lift cursor-pointer group" style="transition-delay: 0.2s;">
-                    <div class="mb-6 flex gap-2">
-                        <div class="w-12 h-12 rounded-2xl flex items-center justify-center" style="background: linear-gradient(135deg, #ec4899, #f43f5e);">
+                <div class="reveal morph-card glass-effect p-8 text-center hover-lift cursor-pointer group" style="transition-delay: 0.2s;">
+                    <div class="mb-14 flex gap-2 justify-center justify-center">
+                        <div class="w-12 h-12 rounded-2xl flex items-center justify-center" style="background: linear-gradient(135deg, #f59e0b, #ef4444);">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="16 18 22 12 16 6"></polyline>
-                                <polyline points="8 6 2 12 8 18"></polyline>
-                            </svg>
-                        </div>
-                        <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background: linear-gradient(135deg, #f43f5e, #fb923c); opacity: 0.6;">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-                                <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
                             </svg>
                         </div>
                     </div>
-                    <h3 class="text-2xl font-bold mb-3 theme-transition" style="color: var(--text-primary);" data-translate="categories.tech.title">Technology & Dev</h3>
-                    <p class="mb-4 theme-transition" style="color: var(--text-secondary);" data-translate="categories.tech.desc">Build the future with cutting-edge skills</p>
-                    <div class="flex items-center gap-2 text-sm font-medium gradient-text">
-                        <span data-translate="categories.tech.courses">256 courses</span>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transform group-hover:translate-x-1 transition-transform">
-                            <line x1="5" y1="12" x2="19" y2="12"></line>
-                            <polyline points="12 5 19 12 12 19"></polyline>
-                        </svg>
-                    </div>
+                    <h3 class="text-2xl font-bold mb-3 theme-transition" style="color: var(--text-primary);" data-translate="categories.tech.title">Undergraduate</h3>
+                    <p class="mb-4 theme-transition" style="color: var(--text-secondary);" data-translate="categories.tech.desc">More than 50 specialities</p>
+                    
                 </div>
 
                 <!-- Category Card 3 -->
-                <div class="reveal morph-card glass-effect p-8 hover-lift cursor-pointer group" style="transition-delay: 0.3s;">
-                    <div class="mb-6 flex gap-2">
+                <div class="reveal morph-card glass-effect p-8 text-center hover-lift cursor-pointer group" style="transition-delay: 0.3s;">
+                    <div class="mb-6 flex gap-2 justify-center">
                         <div class="w-12 h-12 rounded-2xl flex items-center justify-center" style="background: linear-gradient(135deg, #06b6d4, #3b82f6);">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
@@ -440,47 +427,43 @@
                                 <line x1="12" y1="22.08" x2="12" y2="12"></line>
                             </svg>
                         </div>
-                        <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background: linear-gradient(135deg, #3b82f6, #8b5cf6); opacity: 0.6;">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-                                <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
-                            </svg>
-                        </div>
+                        
                     </div>
-                    <h3 class="text-2xl font-bold mb-3 theme-transition" style="color: var(--text-primary);" data-translate="categories.business.title">Business & Strategy</h3>
-                    <p class="mb-4 theme-transition" style="color: var(--text-secondary);" data-translate="categories.business.desc">Lead with confidence and innovation</p>
-                    <div class="flex items-center gap-2 text-sm font-medium gradient-text">
-                        <span data-translate="categories.business.courses">184 courses</span>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transform group-hover:translate-x-1 transition-transform">
-                            <line x1="5" y1="12" x2="19" y2="12"></line>
-                            <polyline points="12 5 19 12 12 19"></polyline>
-                        </svg>
-                    </div>
+                    <h3 class="text-2xl font-bold mb-3 theme-transition" style="color: var(--text-primary);" data-translate="categories.business.title">TopUp Bachelor's / licence</h3>
+                    <p class="mb-4 theme-transition" style="color: var(--text-secondary);" data-translate="categories.business.desc">More than 100 specialties</p>
+                    
                 </div>
 
                 <!-- Category Card 4 -->
-                <div class="reveal morph-card glass-effect p-8 hover-lift cursor-pointer group" style="transition-delay: 0.4s;">
-                    <div class="mb-6 flex gap-2">
+                <div class="reveal morph-card glass-effect p-8 text-center hover-lift cursor-pointer group" style="transition-delay: 0.4s;">
+                    <div class="mb-14 flex gap-2 justify-center justify-center">
                         <div class="w-12 h-12 rounded-2xl flex items-center justify-center" style="background: linear-gradient(135deg, #f59e0b, #ef4444);">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                                 <polyline points="22 4 12 14.01 9 11.01"></polyline>
                             </svg>
                         </div>
-                        <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background: linear-gradient(135deg, #ef4444, #ec4899); opacity: 0.6;">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-                                <circle cx="12" cy="12" r="3"></circle>
+                       
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 theme-transition" style="color: var(--text-primary);" data-translate="categories.personal.title">Postgraduate</h3>
+                    <p class="mb-4 theme-transition" style="color: var(--text-secondary);" data-translate="categories.personal.desc">More than 30 specialities</p>
+                    
+                </div>
+
+                <!-- Category Card 5 -->
+                <div class="reveal morph-card glass-effect p-8 text-center hover-lift cursor-pointer group" style="transition-delay: 0.4s;">
+                   <div class="mb-10 flex gap-2 justify-center">
+                        <div class="w-12 h-12 rounded-2xl flex items-center justify-center" style="background: linear-gradient(135deg, #ec4899, #f43f5e);">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="16 18 22 12 16 6"></polyline>
+                                <polyline points="8 6 2 12 8 18"></polyline>
                             </svg>
                         </div>
+                        
                     </div>
-                    <h3 class="text-2xl font-bold mb-3 theme-transition" style="color: var(--text-primary);" data-translate="categories.personal.title">Personal Growth</h3>
-                    <p class="mb-4 theme-transition" style="color: var(--text-secondary);" data-translate="categories.personal.desc">Unlock your full potential and thrive</p>
-                    <div class="flex items-center gap-2 text-sm font-medium gradient-text">
-                        <span data-translate="categories.personal.courses">92 courses</span>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transform group-hover:translate-x-1 transition-transform">
-                            <line x1="5" y1="12" x2="19" y2="12"></line>
-                            <polyline points="12 5 19 12 12 19"></polyline>
-                        </svg>
-                    </div>
+                    <h3 class="text-2xl font-bold mb-3 theme-transition" style="color: var(--text-primary);" data-translate="categories.personal.title2">Online education</h3>
+                    <p class="mb-4 theme-transition" style="color: var(--text-secondary);" data-translate="categories.personal.desc2">More than 50 specialities</p>
+                    
                 </div>
             </div>
         </div>
@@ -492,10 +475,10 @@
             <div class="flex justify-between items-end mb-16 reveal">
                 <div>
                     <h2 class="heading-display mb-4 theme-transition" style="font-size: clamp(2rem, 4vw, 3.5rem); color: var(--text-primary);" data-translate="courses.title">
-                        Featured Journeys
+                        Our Courses
                     </h2>
                     <p class="text-xl theme-transition" style="color: var(--text-secondary);" data-translate="courses.subtitle">
-                        Handpicked courses to accelerate your growth
+                        The pathway to <b>excellence</b>,  <b>Innovation</b>, <b>Professionalism</b> and <b>Entrepreneurship</b>
                     </p>
                 </div>
                 <button class="hidden md:block px-6 py-3 rounded-full glass-effect hover-lift font-medium theme-transition" style="color: var(--text-primary);" data-translate="courses.viewall">
@@ -508,34 +491,24 @@
                 <div class="reveal hover-lift rounded-3xl overflow-hidden glass-effect" style="transition-delay: 0.1s;">
                     <div class="image-overlay aspect-video">
                         <img src="https://picsum.photos/seed/design1/600/400" alt="Course" class="w-full h-full object-cover">
-                        <div class="absolute top-4 left-4 px-3 py-1.5 rounded-full text-xs font-semibold z-10" style="background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary)); color: white;">
-                            <span data-translate="courses.bestseller">BESTSELLER</span>
-                        </div>
+                        
                     </div>
                     <div class="p-6">
-                        <div class="flex items-center gap-2 mb-3">
-                            <span class="px-3 py-1 rounded-full text-xs font-medium theme-transition" style="background: var(--bg-tertiary); color: var(--text-secondary);" data-translate="courses.category1">Design</span>
-                            <span class="text-xs theme-transition" style="color: var(--text-secondary);">•</span>
-                            <span class="text-xs theme-transition" style="color: var(--text-secondary);" data-translate="courses.duration1">12 weeks</span>
-                        </div>
+                        
                         <h3 class="text-xl font-bold mb-2 theme-transition" style="color: var(--text-primary);" data-translate="courses.title1">
-                            Advanced UI/UX Design Mastery
+                            Health Sciences
                         </h3>
-                        <p class="mb-4 text-sm theme-transition" style="color: var(--text-secondary);" data-translate="courses.desc1">
-                            Create stunning, user-centered experiences that drive engagement and conversion
-                        </p>
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center gap-2">
-                                <div class="w-8 h-8 rounded-full" style="background: linear-gradient(135deg, #6366f1, #8b5cf6);"></div>
-                                <span class="text-sm font-medium theme-transition" style="color: var(--text-primary);">Sarah Chen</span>
-                            </div>
-                            <div class="flex items-center gap-1">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="color: #f59e0b;">
-                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                                </svg>
-                                <span class="text-sm font-bold theme-transition" style="color: var(--text-primary);">4.9</span>
-                            </div>
+                       <div class="flex items-center gap-4 mb-3">
+                             <span class="px-3 py-1 rounded-full text-sm font-medium theme-transition" style="background: var(--bg-tertiary); color: var(--text-secondary);" data-translate="courses.category1">Nursing</span>
+                             <span class="px-3 py-1 rounded-full text-sm font-medium theme-transition" style="background: var(--bg-tertiary); color: var(--text-secondary);" data-translate="courses.category2">Physiotherapy</span>
+                             <span class="px-3 py-1 rounded-full text-sm font-medium theme-transition" style="background: var(--bg-tertiary); color: var(--text-secondary);" data-translate="courses.category3">Dental therapy</span>
+                             <span class="px-3 py-1 rounded-full text-sm font-medium theme-transition" style="background: var(--bg-tertiary); color: var(--text-secondary);" data-translate="courses.category4">Nutrition and Dietetics</span>
+                             <span class="px-3 py-1 rounded-full text-sm font-medium theme-transition" style="background: var(--bg-tertiary); color: var(--text-secondary);" data-translate="courses.category5">Pharmacy technology</span>
+                             <span class="px-3 py-1 rounded-full text-sm font-medium theme-transition" style="background: var(--bg-tertiary); color: var(--text-secondary);" data-translate="courses.category6">Medical Lab Sciences</span>
+                             <span class="px-3 py-1 rounded-full text-sm font-medium theme-transition" style="background: var(--bg-tertiary); color: var(--text-secondary);" data-translate="courses.category7">Medical imaging technology</span>
+                             <span class="px-3 py-1 rounded-full text-sm font-medium theme-transition" style="background: var(--bg-tertiary); color: var(--text-secondary);" data-translate="courses.category8">Health care management</span>
                         </div>
+                        
                     </div>
                 </div>
 
@@ -1135,21 +1108,18 @@
                 "hero.subtitle": "A centre for teaching, learning, innovation, professionalism entrepreneurship and excellence.",
                 "hero.cta1": "Explore Courses",
                 "hero.cta2": "Contact Us",
-                "hero.card.live": "LIVE",
-                "categories.title": "Explore Your Passion",
-                "categories.subtitle": "Curated learning paths across diverse disciplines",
-                "categories.design.title": "Design & Creative",
-                "categories.design.desc": "Master visual storytelling and digital creation",
-                "categories.design.courses": "128 courses",
-                "categories.tech.title": "Technology & Dev",
-                "categories.tech.desc": "Build the future with cutting-edge skills",
-                "categories.tech.courses": "256 courses",
-                "categories.business.title": "Business & Strategy",
-                "categories.business.desc": "Lead with confidence and innovation",
-                "categories.business.courses": "184 courses",
-                "categories.personal.title": "Personal Growth",
-                "categories.personal.desc": "Unlock your full potential and thrive",
-                "categories.personal.courses": "92 courses",
+                "categories.title": "Welcome to TBU Institute",
+                "categories.subtitle": "The Brains University is a professional private higher institute keen to revolutionize training towards job creation by embracing innovation, professionalism and entrepreneurship, while transforming ideas into action.",
+                "categories.design.title": "HND / BTS",
+                "categories.design.desc": "More than 50 specialties",
+                "categories.tech.title": "Undergraduate",
+                "categories.tech.desc": "More than 50 specialities",
+                "categories.business.title": "TopUp Bachelor's / licence",
+                "categories.business.desc": "More than 100 specialities",
+                "categories.personal.title": "Postgraduate",
+                "categories.personal.desc": "More than 30 specialities",
+                 "categories.personal.title2": "Online education",
+                "categories.personal.desc2": "More than 50 specialities",
                 "courses.title": "Featured Journeys",
                 "courses.subtitle": "Handpicked courses to accelerate your growth",
                 "courses.viewall": "View All Courses",
@@ -1247,27 +1217,24 @@
                 "nav.faculties": "Facultés",
                 "nav.contact": "Contact",
                 "hero.badge": "✨ L'Avenir de l'Apprentissage",
-                "hero.title1": "The Brains",
-                "hero.title2": "University,",
-                "hero.title3": "Institute",
+                "hero.title1": "Institut",
+                "hero.title2": "The Brains,",
+                "hero.title3": "University",
                 "hero.subtitle": "Un centre dédié à l'enseignement, à l'apprentissage, à l'innovation, au professionnalisme, à l'entrepreneuriat et à l'excellence.",
                 "hero.cta1": "Explorer les Cours",
                 "hero.cta2": "Nous Contacter",
-                "hero.card.live": "EN DIRECT",
-                "categories.title": "Explorez Votre Passion",
-                "categories.subtitle": "Parcours d'apprentissage sélectionnés dans diverses disciplines",
-                "categories.design.title": "Design & Créatif",
-                "categories.design.desc": "Maîtrisez la narration visuelle et la création numérique",
-                "categories.design.courses": "128 cours",
-                "categories.tech.title": "Technologie & Dév",
-                "categories.tech.desc": "Construisez l'avenir avec des compétences de pointe",
-                "categories.tech.courses": "256 cours",
-                "categories.business.title": "Business & Stratégie",
-                "categories.business.desc": "Dirigez avec confiance et innovation",
-                "categories.business.courses": "184 cours",
-                "categories.personal.title": "Croissance Personnelle",
-                "categories.personal.desc": "Libérez votre plein potentiel et prospérez",
-                "categories.personal.courses": "92 cours",
+                "categories.title": "Bienvenue à l'Institut TBU",
+                "categories.subtitle": "The Brains University est un établissement d'enseignement supérieur privé professionnel qui souhaite révolutionner la formation en faveur de la création d'emplois en misant sur l'innovation, le professionnalisme et l'esprit d'entreprise, tout en transformant les idées en actions concrètes.",
+                "categories.design.title": "HND / BTS",
+                "categories.design.desc": "Plus de 50 spécialités",
+                "categories.tech.title": "Premier cycle",
+                "categories.tech.desc": "Plus de 50 spécialités",
+                "categories.business.title": "Licence complémentaire / licence",
+                "categories.business.desc": "Plus de 100 spécialités",
+                "categories.personal.title": "Deuxième cycle",
+                "categories.personal.desc": "Plus de 30 spécialités",
+                "categories.personal.title2": "Formation en ligne",
+                "categories.personal.desc2": "Plus de 50 spécialités",
                 "courses.title": "Parcours Vedettes",
                 "courses.subtitle": "Cours sélectionnés pour accélérer votre croissance",
                 "courses.viewall": "Voir Tous les Cours",
@@ -1459,6 +1426,120 @@
                 element.style.transform = `translateY(${scrolled * speed}px)`;
             });
         });
+
+        // Slider functionality - Automatically reads from HTML data-images attribute
+function loadSlidesFromHTML() {
+    const sliderElement = document.querySelector('[data-images]');
+    if (!sliderElement) return;
+    
+    const dataImages = sliderElement.getAttribute('data-images');
+    const slidesData = dataImages.split(',').map(item => {
+        const [image, title, desc] = item.split('|');
+        return { image: image.trim(), title: title.trim(), desc: desc.trim() };
+    });
+    
+    sliders[1] = {
+        currentIndex: 0,
+        slides: slidesData
+    };
+}
+
+// Initialize sliders object
+const sliders = {};
+loadSlidesFromHTML();
+
+function updateSlideIndicators(sliderId) {
+    const slider = sliders[sliderId];
+    for (let i = 0; i < slider.slides.length; i++) {
+        const indicator = document.getElementById(`indicator-${sliderId}-${i}`);
+        if (indicator) {
+            if (i === slider.currentIndex) {
+                indicator.style.width = '2rem';
+                indicator.style.backgroundColor = 'white';
+            } else {
+                indicator.style.width = '0.5rem';
+                indicator.style.backgroundColor = 'rgba(255, 255, 255, 0.4)';
+            }
+        }
+    }
+}
+
+function updateSlide(sliderId) {
+    const slider = sliders[sliderId];
+    const slide = slider.slides[slider.currentIndex];
+    
+    const img = document.getElementById(`slider-image-${sliderId}`);
+    const title = document.getElementById(`slider-title-${sliderId}`);
+    const desc = document.getElementById(`slider-desc-${sliderId}`);
+    
+    img.style.opacity = '0';
+    setTimeout(() => {
+        img.src = slide.image;
+        title.textContent = slide.title;
+        desc.textContent = slide.desc;
+        img.style.opacity = '1';
+        updateSlideIndicators(sliderId);
+    }, 300);
+}
+
+function nextSlide(sliderId) {
+    const slider = sliders[sliderId];
+    slider.currentIndex = (slider.currentIndex + 1) % slider.slides.length;
+    updateSlide(sliderId);
+    resetAutoSlide(sliderId);
+}
+
+function previousSlide(sliderId) {
+    const slider = sliders[sliderId];
+    slider.currentIndex = (slider.currentIndex - 1 + slider.slides.length) % slider.slides.length;
+    updateSlide(sliderId);
+    resetAutoSlide(sliderId);
+}
+
+function goToSlide(sliderId, index) {
+    const slider = sliders[sliderId];
+    slider.currentIndex = index;
+    updateSlide(sliderId);
+    resetAutoSlide(sliderId);
+}
+
+// Auto slide functionality
+let autoSlideIntervals = {};
+
+function startAutoSlide(sliderId) {
+    if (autoSlideIntervals[sliderId]) {
+        clearInterval(autoSlideIntervals[sliderId]);
+    }
+    
+    autoSlideIntervals[sliderId] = setInterval(() => {
+        nextSlide(sliderId);
+    }, 4000);
+}
+
+function resetAutoSlide(sliderId) {
+    startAutoSlide(sliderId);
+}
+
+// Initialize auto slide when page loads
+function initAutoSlide() {
+    startAutoSlide(1);
+    
+    const sliderElement = document.querySelector('.glass-effect.rounded-3xl');
+    if (sliderElement) {
+        sliderElement.addEventListener('mouseenter', () => {
+            if (autoSlideIntervals[1]) {
+                clearInterval(autoSlideIntervals[1]);
+            }
+        });
+        
+        sliderElement.addEventListener('mouseleave', () => {
+            startAutoSlide(1);
+        });
+    }
+}
+
+// Start auto slide after a short delay to ensure DOM is ready
+setTimeout(initAutoSlide, 500);
 
         // Newsletter form submission
         document.querySelector('form').addEventListener('submit', (e) => {
